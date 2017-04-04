@@ -84,9 +84,6 @@ if [ -z "$AUTOTOOLS_CFG" ]; then
     usage
     exit 1
 fi
-        o)
-            DOWNLOAD_APP="yes"
-            ;;
 
 if [ "$AUTOTOOLS_CFG" != "yes" ] && [ "$AUTOTOOLS_CFG" != "no" ]; then
     echo "Option \"-a\" has unsupported option. "$VALID_AUTOTOOLS_CFG_STR
