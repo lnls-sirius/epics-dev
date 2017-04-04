@@ -49,6 +49,11 @@ tar xvzf ${TOP_DIR}/EPICS-CPP-${EPICS_V4_BASE_VERSION}.tar.gz
 EPICS_V4_CPP=${EPICS_FOLDER}/EPICS-CPP-${EPICS_V4_BASE_VERSION}
 cd ${EPICS_V4_CPP}
 
+# Remove possible existing symlink
+rm -f ${EPICS_V4}
+# Create symlink
+ln -sf ${EPICS_V4_CPP} ${EPICS_V4}
+
 # Update ldconfig with EPICS libs
 for path in normativeTypesCPP pvaClientCPP pvaSrv pvDatabaseCPP pvAccessCPP \
     pvaPy pvCommonCPP pvDataCPP; do
