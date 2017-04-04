@@ -11,7 +11,7 @@ echo "Installing EPICS"
 . ./env-vars.sh
 
 # Source EPICS variables
-. ./epics.sh
+. ./bash.bashrc.local
 
 USER=$(whoami)
 TOP_DIR=$(pwd)
@@ -50,8 +50,7 @@ sudo chmod 755 ${EPICS_FOLDER}
 sudo chown ${USER}:${USER} ${EPICS_FOLDER}
 
 # Copy EPICS environment variables to profile
-sudo cp ${TOP_DIR}/epics.sh ${EPICS_ENV_DIR}
-. ${EPICS_ENV_DIR}/epics.sh
+sudo cat ${TOP_DIR}/bash.bashrc.local >> /etc/bash.bashrc
 
 # Extract and install EPICS
 cd ${EPICS_FOLDER}

@@ -1,5 +1,3 @@
-#!/bin/sh
-
 #EPICS
 export EPICS_HOST_ARCH=linux-x86_64
 export EPICS_FOLDER=/opt/epics
