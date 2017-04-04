@@ -44,6 +44,28 @@ DEB_UBU_GEN_DEPS="\
     libhdf5-dev \
     ImageMagick
 "
+UBU_16_10_GEN_DEPS="\
+    build-essential \
+    g++ \
+    glib2.0 \
+    libglib2.0 \
+    libglib2.0-dev \
+    uuid-dev \
+    libreadline6 \
+    libreadline6-dev \
+    libusb-dev \
+    bzip2 \
+    libbz2-dev \
+    libxml2-dev \
+    perl \
+    libpng-dev \
+    libx11-dev \
+    libxext-dev \
+    libfreetype6 \
+    libhdf5-dev \
+    imagemagick \
+    libtiff5-dev
+"
 UBU_16_GEN_DEPS="\
     build-essential \
     g++ \
@@ -88,6 +110,7 @@ UBU_12_GEN_DEPS="\
     ImageMagick
 "
 DEB_UBU_DEPS="${DEB_UBU_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
+UBU_16_10_DEPS="${UBU_16_10_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_16_DEPS="${UBU_16_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_12_DEPS="${UBU_12_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 
@@ -125,6 +148,8 @@ case $distro in
             DEPS="${GEN_DEPS} ${UBU_12_DEPS}"
         elif [ "$rev" == "16.04" ]; then
             DEPS="${GEN_DEPS} ${UBU_16_DEPS}"
+        elif [ "$rev" == "16.10" ]; then
+            DEPS="${GEN_DEPS} ${UBU_16_10_DEPS}"
         else
             DEPS="${GEN_DEPS} ${DEB_UBU_DEPS}"
         fi
