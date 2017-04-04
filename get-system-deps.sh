@@ -10,7 +10,6 @@ GEN_DEPS="\
     binutils \
     git \
     re2c \
-    linux-headers-`uname -r` \
     automake \
     autoconf \
     make \
