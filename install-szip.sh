@@ -19,6 +19,9 @@ cd szip-${SZIP_VERSION}
 ./configure --libdir=${SZIP_LIB} --includedir=${SZIP_INCLUDE}
 make
 sudo make install
+if [ "${CLEANUP_APP}" == "yes" ]; then
+    make clean
+fi
 
 cd ..
 

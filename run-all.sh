@@ -23,6 +23,7 @@ function usage {
     echo "    -s <install system dependencies = [yes|no]>"
     echo "    -i <install the packages>"
     echo "    -o <download the packages>"
+    echo "    -c <cleanup the packages>"
 }
 
 # Select if we want autotools or not. Options are: yes or no
@@ -37,9 +38,12 @@ SYSTEM_DEPS_CFG="no"
 INSTALL_APP="no"
 # Select if we want to download the packages or not. Options are: yes or no
 DOWNLOAD_APP="no"
+# Select if we want to cleanup the packages or not. This only removes intermediate
+# files, that are not needed after the build. Options are: yes or no
+CLEANUP_APP="no"
 
 # Get command line options
-while getopts ":a:e:x:s:io" opt; do
+while getopts ":a:e:x:s:ioc" opt; do
     case $opt in
         a)
             AUTOTOOLS_CFG=$OPTARG
@@ -59,6 +63,9 @@ while getopts ":a:e:x:s:io" opt; do
         o)
             DOWNLOAD_APP="yes"
             ;;
+        c)
+            CLEANUP_APP="yes"
+            ;;
         \?)
             echo "Invalid option: -$OPTARG" >&2
             usage
@@ -77,6 +84,9 @@ if [ -z "$AUTOTOOLS_CFG" ]; then
     usage
     exit 1
 fi
+        o)
+            DOWNLOAD_APP="yes"
+            ;;
 
 if [ "$AUTOTOOLS_CFG" != "yes" ] && [ "$AUTOTOOLS_CFG" != "no" ]; then
     echo "Option \"-a\" has unsupported option. "$VALID_AUTOTOOLS_CFG_STR
@@ -126,6 +136,7 @@ set -u
 # Export children variables
 export INSTALL_APP
 export DOWNLOAD_APP
+export CLEANUP_APP
 
 ######################## System Dependencies Installation ######################
 

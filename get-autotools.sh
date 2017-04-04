@@ -43,8 +43,13 @@ for project in pkg-config-${PKG_CONFIG_VERSION} \
         ./configure &&
         make &&
         sudo make install && \
-        sudo ldconfig && \
-        cd ..
+        sudo ldconfig
+
+    if [ "${CLEANUP_APP}" == "yes" ]; then
+        make clean
+    fi
+
+    cd ..
 
     # Check last command return status
     if [ $? -ne 0 ]; then

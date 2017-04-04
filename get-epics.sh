@@ -75,6 +75,9 @@ sudo ldconfig
 # Compile EPICS base
 cd ${EPICS_BASE}
 make
+if [ "${CLEANUP_APP}" == "yes" ]; then
+    make clean
+fi
 
 ############################ EPICS Extensions ##################################
 
@@ -86,6 +89,9 @@ tar xvzf ${TOP_DIR}/extensionsTop_${EXTERNSIONS_VERSION}.tar.gz
 cd ${EPICS_EXTENSIONS}
 make
 make install
+if [ "${CLEANUP_APP}" == "yes" ]; then
+    make clean
+fi
 
 ########################### EPICS msi Extension ################################
 
@@ -95,6 +101,9 @@ tar xvzf ${TOP_DIR}/msi${MSI_VERSION}.tar.gz
 cd ${EPICS_MSI}
 make
 make install
+if [ "${CLEANUP_APP}" == "yes" ]; then
+    make clean
+fi
 
 ######################### EPICS procServ Extension #############################
 
@@ -105,6 +114,9 @@ cd ${EPICS_PROCSERV}
 ./configure
 make
 sudo make install
+if [ "${CLEANUP_APP}" == "yes" ]; then
+    make clean
+fi
 
 ########################### EPICS synApps modules ##############################
 
@@ -161,5 +173,8 @@ cat configure/CONFIG_SITE.linux-x86_64.Common || /bin/true
 
 make release
 make
+if [ "${CLEANUP_APP}" == "yes" ]; then
+    make clean
+fi
 
 echo "EPICS installation successfully completed"

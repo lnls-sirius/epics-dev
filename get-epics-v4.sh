@@ -61,5 +61,8 @@ sudo ldconfig
 
 # Compile EPICS base
 make EPICS_BASE=${EPICS_BASE}
+if [ "${CLEANUP_APP}" == "yes" ]; then
+    make clean
+fi
 
 echo "EPICS V4 installation successfully completed"
