@@ -64,8 +64,10 @@ done
 # Update ldconfig cache
 sudo ldconfig
 
-# Compile EPICS base
+# Compile EPICS V4
 make EPICS_BASE=${EPICS_BASE}
+# Compile Python API
+make python
 if [ "${CLEANUP_APP}" == "yes" ]; then
     make clean
 fi
