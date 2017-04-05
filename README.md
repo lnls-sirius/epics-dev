@@ -5,7 +5,7 @@ Software, as well as Gateware and client applications.
 
 ## Instructions
 
-    ./run-all.sh -a yes -e yes -x yes -s yes -i -o
+    ./run-all.sh -a yes -e yes -x yes -s yes -i -o -c
 
 The meaning of the options are:
 
@@ -15,6 +15,7 @@ The meaning of the options are:
     -s <install system dependencies = [yes|no]>
     -i <install the packages>
     -o <download the packages>
+    -c <cleanup the packages>
 
 This will download/compile/install all the dependencies needed, as well as the
 EPICS V3/V4 packages and tools
