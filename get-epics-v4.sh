@@ -66,10 +66,9 @@ sudo ldconfig
 
 # Compile EPICS V4
 make EPICS_BASE=${EPICS_BASE}
-# Compile Python API
-make python
 if [ "${CLEANUP_APP}" == "yes" ]; then
-    make clean
+    # Ignore any errors here
+    make clean || /bin/true
 fi
 
 echo "EPICS V4 installation successfully completed"
