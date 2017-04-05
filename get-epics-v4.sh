@@ -11,7 +11,7 @@ echo "Installing EPICS V4"
 . ./env-vars.sh
 
 # Source EPICS variables
-. ./epics.sh
+. ./bash.bashrc.local
 
 USER=$(whoami)
 TOP_DIR=$(pwd)
