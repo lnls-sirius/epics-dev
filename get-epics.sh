@@ -50,7 +50,7 @@ sudo chmod 755 ${EPICS_FOLDER}
 sudo chown ${USER}:${USER} ${EPICS_FOLDER}
 
 # Copy EPICS environment variables to profile
-sudo cat ${TOP_DIR}/bash.bashrc.local >> /etc/bash.bashrc
+sudo bash -c "cat ${TOP_DIR}/bash.bashrc.local >> /etc/bash.bashrc"
 
 # Extract and install EPICS
 cd ${EPICS_FOLDER}
