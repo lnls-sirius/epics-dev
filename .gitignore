@@ -1,0 +1,13 @@
+*.gz
+
+autoconf*/
+automake*/
+baseR*/
+extensions*/
+libtool*/
+m4-*/
+msi*/
+pkg-config-*/
+procServ*/
+synApps*/
+szip*/
