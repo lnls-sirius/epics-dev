@@ -7,6 +7,7 @@ set -u
 
 VALID_EPICS_CFG_STR="Valid values are: \"yes\" and \"no\"."
 VALID_EPICS_V4_CFG_STR="Valid values are: \"yes\" and \"no\"."
+VALID_SYNAPPS_CFG_STR="Valid values are: \"yes\" and \"no\"."
 VALID_SYSTEM_DEPS_CFG_STR="Valid values are: \"yes\" and \"no\"."
 
 # Source environment variables
@@ -20,6 +21,7 @@ function usage {
     echo "    -a <install autotools = [yes|no]>"
     echo "    -e <install EPICS tools = [yes|no]>"
     echo "    -x <install EPICS V4 tools = [yes|no]>"
+    echo "    -n <install SynApps = [yes|no]>"
     echo "    -s <install system dependencies = [yes|no]>"
     echo "    -i <install the packages>"
     echo "    -o <download the packages>"
@@ -32,6 +34,8 @@ AUTOTOOLS_CFG="no"
 EPICS_CFG="no"
 # Select if we want epics V4 or not. Options are: yes or no
 EPICS_V4_CFG="no"
+# Select if we want to install SynApps. Options are: yes or no
+SYNAPPS_CFG="no"
 # Select if we want to install system dependencies or not. Options are: yes or no
 SYSTEM_DEPS_CFG="no"
 # Select if we want to install the packages or not. Options are: yes or no
@@ -43,7 +47,7 @@ DOWNLOAD_APP="no"
 CLEANUP_APP="no"
 
 # Get command line options
-while getopts ":a:e:x:s:ioc" opt; do
+while getopts ":a:e:x:s:n:ioc" opt; do
     case $opt in
         a)
             AUTOTOOLS_CFG=$OPTARG
@@ -53,6 +57,9 @@ while getopts ":a:e:x:s:ioc" opt; do
             ;;
         x)
             EPICS_V4_CFG=$OPTARG
+            ;;
+        n)
+            SYNAPPS_CFG=$OPTARG
             ;;
         s)
             SYSTEM_DEPS_CFG=$OPTARG
@@ -111,6 +118,18 @@ fi
 
 if [ "$EPICS_V4_CFG" != "yes" ] && [ "$EPICS_V4_CFG" != "no" ]; then
     echo "Option \"-x\" has unsupported option. "$VALID_EPICS_V4_CFG_STR
+    usage
+    exit 1
+fi
+
+if [ -z "$SYNAPPS_CFG" ]; then
+    echo "Option \"-n\" unset. "$VALID_SYNAPPS_CFG_STR
+    usage
+    exit 1
+fi
+
+if [ "$SYNAPPS_CFG" != "yes" ] && [ "$SYNAPPS_CFG" != "no" ]; then
+    echo "Option \"-n\" has unsupported option. "$VALID_SYNAPPS_CFG_STR
     usage
     exit 1
 fi
@@ -177,6 +196,19 @@ if [ "$EPICS_CFG" == "yes" ]; then
     # Check last command return status
     if [ $? -ne 0 ]; then
         echo "Could not compile/install project epics." >&2
+        exit 1
+    fi
+fi
+
+############################ SynApps Installation ##############################
+
+# Check if we want to install epics
+if [ "$SYNAPPS_CFG" == "yes" ]; then
+    ./get-synapps.sh
+
+    # Check last command return status
+    if [ $? -ne 0 ]; then
+        echo "Could not compile/install project synapps." >&2
         exit 1
     fi
 fi
