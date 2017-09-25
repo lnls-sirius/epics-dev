@@ -190,6 +190,7 @@ if [ "${DOWNLOAD_APP}" == "yes" ]; then
 
     # Install missing dependencies not available on repos
     ./install-szip.sh
+    ./install-re2c.sh
 fi
 
 echo "System dependencies installation completed"
