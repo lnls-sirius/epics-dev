@@ -115,6 +115,8 @@ UBU_16_DEPS="${UBU_16_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_12_DEPS="${UBU_12_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 
 FED_RED_SUS_DEPS="\
+    which \
+    wget \
     gcc-c++ \
     glib2 \
     glib2-devel \
@@ -125,7 +127,9 @@ FED_RED_SUS_DEPS="\
     bzip2-devel \
     libxml2-devel \
     perl \
+    perl-devel \
     perl-ExtUtils* \
+    perl-Pod-Checker \
     libpng-devel \
     libX11-devel \
     libXext-devel \
