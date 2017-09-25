@@ -115,4 +115,13 @@ if [ "${CLEANUP_APP}" == "yes" ]; then
     make clean
 fi
 
+######################## Clean up downloaded files #############################
+
+if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
+    rm -f ${TOP_DIR}/baseR${EPICS_BASE_VERSION}.tar.gz
+    rm -f ${TOP_DIR}/extensionsTop_${EXTERNSIONS_VERSION}.tar.gz
+    rm -f ${TOP_DIR}/msi${MSI_VERSION}.tar.gz
+    rm -f ${TOP_DIR}/procServ-${PROCSERV_VERSION}.tar.gz
+fi
+
 echo "EPICS installation successfully completed"

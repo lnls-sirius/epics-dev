@@ -71,4 +71,10 @@ if [ "${CLEANUP_APP}" == "yes" ]; then
     make clean || /bin/true
 fi
 
+######################## Clean up downloaded files #############################
+
+if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
+    rm -f ${TOP_DIR}/EPICS-CPP-${EPICS_V4_BASE_VERSION}.tar.gz
+fi
+
 echo "EPICS V4 installation successfully completed"

@@ -85,4 +85,10 @@ if [ "${CLEANUP_APP}" == "yes" ]; then
     make clean
 fi
 
+######################## Clean up downloaded files #############################
+
+if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
+    rm -f ${TOP_DIR}/synApps_${SYNAPPS_VERSION}.tar.gz
+fi
+
 echo "SynApps installation successfully completed"
