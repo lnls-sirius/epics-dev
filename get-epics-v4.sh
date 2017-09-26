@@ -14,6 +14,7 @@ echo "Installing EPICS V4"
 . ./bash.bashrc.local
 
 USER=$(whoami)
+GROUP=$(groups ${USER} | cut -d' ' -f3)
 TOP_DIR=$(pwd)
 EPICS_ENV_DIR=/etc/profile.d
 LDCONF_DIR=/etc/ld.so.conf.d
@@ -39,7 +40,7 @@ fi
 # Prepare environment
 sudo mkdir -p ${EPICS_FOLDER}
 sudo chmod 755 ${EPICS_FOLDER}
-sudo chown ${USER}:${USER} ${EPICS_FOLDER}
+sudo chown ${USER}:${GROUP} ${EPICS_FOLDER}
 
 # Extract and install EPICS
 cd ${EPICS_FOLDER}
