@@ -10,7 +10,9 @@ set -x
 . ./repo-versions.sh
 
 # Download RPM
-wget https://support.hdfgroup.org/ftp/lib-external/szip/2.1.1/src/szip-${SZIP_VERSION}.tar.gz
+if [ "${DOWNLOAD_APP}" == "yes" ]; then
+    wget -nc https://support.hdfgroup.org/ftp/lib-external/szip/2.1.1/src/szip-${SZIP_VERSION}.tar.gz
+fi
 
 # Install it
 tar xvf szip-${SZIP_VERSION}.tar.gz
