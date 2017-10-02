@@ -7,81 +7,42 @@ set -e
 
 # Dependency list
 GEN_DEPS="\
-    binutils \
-    git \
-    re2c \
-    automake \
-    autoconf \
-    make \
-    libtool
 "
 DEB_UBU_PERL_DEPS="\
-    libextutils-cchecker-perl \
-    libextutils-f77-perl \
-    libextutils-libbuilder-perl \
-    libextutils-pkgconfig-perl \
-    libextutils-xsbuilder-perl \
-    libextutils-xspp-perl
 "
 DEB_UBU_GEN_DEPS="\
-    build-essential \
-    g++ \
-    glib2.0 \
-    libglib2.0 \
-    libglib2.0-dev \
-    uuid-dev \
-    libreadline6 \
-    libreadline6-dev \
-    libusb-dev \
-    bzip2 \
-    libbz2-dev \
-    libxml2-dev \
-    perl \
+    libpng12-dev \
+    libX11-dev \
+    libXext-dev \
+    libfreetype6 \
+    libhdf5-dev \
+    ImageMagick
 "
 UBU_16_10_GEN_DEPS="\
-    build-essential \
-    g++ \
-    glib2.0 \
-    libglib2.0 \
-    libglib2.0-dev \
-    uuid-dev \
-    libreadline6 \
-    libreadline6-dev \
-    libusb-dev \
-    bzip2 \
-    libbz2-dev \
-    libxml2-dev \
-    perl \
+    libpng-dev \
+    libx11-dev \
+    libxext-dev \
+    libfreetype6 \
+    libhdf5-dev \
+    imagemagick \
+    libtiff5-dev
 "
 UBU_16_GEN_DEPS="\
-    build-essential \
-    g++ \
-    glib2.0 \
-    libglib2.0 \
-    libglib2.0-dev \
-    uuid-dev \
-    libreadline6 \
-    libreadline6-dev \
-    libusb-dev \
-    bzip2 \
-    libbz2-dev \
-    libxml2-dev \
-    perl \
+    libpng12-dev \
+    libx11-dev \
+    libxext-dev \
+    libfreetype6 \
+    libhdf5-dev \
+    imagemagick \
+    libtiff5-dev
 "
 UBU_12_GEN_DEPS="\
-    build-essential \
-    g++ \
-    glib2.0 \
-    libglib2.0 \
-    libglib2.0-dev \
-    uuid-dev \
-    libreadline6 \
-    libreadline6-dev \
-    libusb-dev \
-    bzip2 \
-    libbz2-dev \
-    libxml2-dev \
-    perl \
+    libpng12-dev \
+    libx11-dev \
+    libxext-dev \
+    libfreetype6 \
+    libhdf5-serial-dev \
+    ImageMagick
 "
 DEB_UBU_DEPS="${DEB_UBU_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_16_10_DEPS="${UBU_16_10_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
@@ -89,24 +50,17 @@ UBU_16_DEPS="${UBU_16_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_12_DEPS="${UBU_12_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 
 FED_RED_SUS_DEPS="\
-    which \
-    wget \
-    gcc-c++ \
-    glib2 \
-    glib2-devel \
-    uuid-devel \
-    readline \
-    readline-devel \
-    libusb-devel \
-    bzip2-devel \
-    libxml2-devel \
-    perl \
-    perl-devel \
-    perl-ExtUtils* \
-    perl-Pod-Checker \
+    libpng-devel \
+    libX11-devel \
+    libXext-devel \
+    freetype-devel \
+    hdf5 \
+    hdf5-devel \
+    ImageMagick \
+    ImageMagick-devel
 "
 
-echo "Installing system dependencies"
+echo "Installing SynApps dependencies"
 
 distro=$(./get-os-distro.sh -d)
 rev=$(./get-os-distro.sh -r)
@@ -155,7 +109,8 @@ if [ "${DOWNLOAD_APP}" == "yes" ]; then
     sudo ${PKG_MANAGER} ${PKG_INSTALL_COMMAND} ${DEPS}
 
     # Install missing dependencies not available on repos
-    ./install-re2c.sh
+    ./install-szip.sh
+    ./install-hdf5.sh
 fi
 
-echo "System dependencies installation completed"
+echo "SynApps dependencies installation completed"

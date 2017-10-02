@@ -5,6 +5,8 @@ set -u
 # Exit on error
 set -e
 
+./get-synapps-deps.sh
+
 echo "Installing SynApps"
 
 # Source environment variables
