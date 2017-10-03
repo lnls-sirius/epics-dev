@@ -8,6 +8,7 @@ set -u
 VALID_EPICS_CFG_STR="Valid values are: \"yes\" and \"no\"."
 VALID_EPICS_V4_CFG_STR="Valid values are: \"yes\" and \"no\"."
 VALID_SYNAPPS_CFG_STR="Valid values are: \"yes\" and \"no\"."
+VALID_STREAM_DEVICE_CFG_STR="Valid values are: \"yes\" and \"no\"."
 VALID_SYSTEM_DEPS_CFG_STR="Valid values are: \"yes\" and \"no\"."
 
 # Source environment variables
@@ -22,6 +23,7 @@ function usage {
     echo "    -e <install EPICS tools = [yes|no]>"
     echo "    -x <install EPICS V4 tools = [yes|no]>"
     echo "    -n <install SynApps = [yes|no]>"
+    echo "    -t <install StreamDevice ${STREAM_DEVICE_VERSION} = [yes|no]>"
     echo "    -s <install system dependencies = [yes|no]>"
     echo "    -i <install the packages>"
     echo "    -o <download the packages>"
@@ -36,6 +38,8 @@ EPICS_CFG="no"
 EPICS_V4_CFG="no"
 # Select if we want to install SynApps. Options are: yes or no
 SYNAPPS_CFG="no"
+# Select if we want to install a new version of Stream Device. Options are: yes or no
+STREAM_DEVICE_CFG="no"
 # Select if we want to install system dependencies or not. Options are: yes or no
 SYSTEM_DEPS_CFG="no"
 # Select if we want to install the packages or not. Options are: yes or no
@@ -47,7 +51,7 @@ DOWNLOAD_APP="no"
 CLEANUP_APP="no"
 
 # Get command line options
-while getopts ":a:e:x:s:n:ioc" opt; do
+while getopts ":a:e:x:s:n:t:ioc" opt; do
     case $opt in
         a)
             AUTOTOOLS_CFG=$OPTARG
@@ -60,6 +64,9 @@ while getopts ":a:e:x:s:n:ioc" opt; do
             ;;
         n)
             SYNAPPS_CFG=$OPTARG
+            ;;
+        t)
+            STREAM_DEVICE_CFG=$OPTARG
             ;;
         s)
             SYSTEM_DEPS_CFG=$OPTARG
@@ -130,6 +137,18 @@ fi
 
 if [ "$SYNAPPS_CFG" != "yes" ] && [ "$SYNAPPS_CFG" != "no" ]; then
     echo "Option \"-n\" has unsupported option. "$VALID_SYNAPPS_CFG_STR
+    usage
+    exit 1
+fi
+
+if [ -z "$STREAM_DEVICE_CFG" ]; then
+    echo "Option \"-n\" unset. "$VALID_STREAM_DEVICE_CFG_STR
+    usage
+    exit 1
+fi
+
+if [ "$STREAM_DEVICE_CFG" != "yes" ] && [ "$STREAM_DEVICE_CFG" != "no" ]; then
+    echo "Option \"-n\" has unsupported option. "$VALID_STREAM_DEVICE_CFG_STR
     usage
     exit 1
 fi
@@ -222,6 +241,19 @@ if [ "$EPICS_V4_CFG" == "yes" ]; then
     # Check last command return status
     if [ $? -ne 0 ]; then
         echo "Could not compile/install project epics V4." >&2
+        exit 1
+    fi
+fi
+
+######################### Stream Device Installation ###########################
+
+# Check if we want to install new version of Stream Device
+if [ "$STREAM_DEVICE_CFG" == "yes" ]; then
+    ./get-stream-device.sh
+
+    # Check last command return status
+    if [ $? -ne 0 ]; then
+        echo "Could not compile/install new version of Stream Device." >&2
         exit 1
     fi
 fi
