@@ -44,6 +44,27 @@ DEB_UBU_GEN_DEPS="\
     libhdf5-dev \
     ImageMagick
 "
+DEB_GEN_DEPS="\
+    build-essential \
+    g++ \
+    glib2.0 \
+    libglib2.0 \
+    libglib2.0-dev \
+    uuid-dev \
+    libreadline7 \
+    libreadline-dev \
+    libusb-dev \
+    bzip2 \
+    libbz2-dev \
+    libxml2-dev \
+    perl \
+    libpng-dev \
+    libx11-dev \
+    libxext-dev \
+    libfreetype6 \
+    libhdf5-dev \
+    imagemagick
+"
 UBU_16_10_GEN_DEPS="\
     build-essential \
     g++ \
@@ -110,6 +131,7 @@ UBU_12_GEN_DEPS="\
     ImageMagick
 "
 DEB_UBU_DEPS="${DEB_UBU_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
+DEB_DEPS="${DEB_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_16_10_DEPS="${UBU_16_10_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_16_DEPS="${UBU_16_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_12_DEPS="${UBU_12_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
@@ -142,7 +164,7 @@ distro=$(./get-os-distro.sh -d)
 rev=$(./get-os-distro.sh -r)
 
 case $distro in
-    "Ubuntu" | "Debian")
+    "Ubuntu")
         # Ubuntu 16 changed some package names
         if [ "$rev" \< "12.04" ] || [ "$rev" == "12.04" ]; then
             DEPS="${GEN_DEPS} ${UBU_12_DEPS}"
@@ -154,6 +176,12 @@ case $distro in
             DEPS="${GEN_DEPS} ${DEB_UBU_DEPS}"
         fi
 
+        PKG_MANAGER="apt-get"
+        PKG_UPDT_COMMAND="update"
+        PKG_INSTALL_COMMAND="install -y"
+        ;;
+    "Debian")
+        DEPS="${GEN_DEPS} ${DEB_DEPS}"
         PKG_MANAGER="apt-get"
         PKG_UPDT_COMMAND="update"
         PKG_INSTALL_COMMAND="install -y"
