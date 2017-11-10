@@ -9,7 +9,7 @@ Software, as well as Gateware and client applications.
 
 The meaning of the options are:
 
-    -a <install autotools = [yes|no]>
+    -a <install autotools from source = [yes|no]>
     -e <install EPICS tools = [yes|no]>
     -x <install EPICS V4 tools = [yes|no]>
     -s <install system dependencies = [yes|no]>

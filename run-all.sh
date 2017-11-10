@@ -17,7 +17,7 @@ VALID_SYSTEM_DEPS_CFG_STR="Valid values are: \"yes\" and \"no\"."
 
 function usage {
     echo "Usage: $0 "
-    echo "    -a <install autotools = [yes|no]>"
+    echo "    -a <install autotools from source = [yes|no]>"
     echo "    -e <install EPICS tools = [yes|no]>"
     echo "    -x <install EPICS V4 tools = [yes|no]>"
     echo "    -s <install system dependencies = [yes|no]>"
