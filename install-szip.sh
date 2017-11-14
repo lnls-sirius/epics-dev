@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 
 set -e
 set -x
@@ -11,7 +11,7 @@ set -x
 
 # Download RPM
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc https://support.hdfgroup.org/ftp/lib-external/szip/2.1.1/src/szip-${SZIP_VERSION}.tar.gz
+    curl -O https://support.hdfgroup.org/ftp/lib-external/szip/${SZIP_VERSION}/src/szip-${SZIP_VERSION}.tar.gz
 fi
 
 # Install it
