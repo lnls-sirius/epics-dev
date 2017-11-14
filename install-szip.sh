@@ -15,7 +15,7 @@ if [ "${DOWNLOAD_APP}" == "yes" ]; then
 fi
 
 # Install it
-gzip -dc szip-${SZIP_VERSION}.tar.gz | tar -xvzf -
+tar xvf szip-${SZIP_VERSION}.tar.gz
 cd szip-${SZIP_VERSION}
 
 ./configure --libdir=${SZIP_LIB} --includedir=${SZIP_INCLUDE}
