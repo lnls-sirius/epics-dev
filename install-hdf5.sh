@@ -9,8 +9,16 @@ set -x
 # Source repo versions
 . ./repo-versions.sh
 
-# Download source
-wget https://support.hdfgroup.org/ftp/HDF5/current/src/hdf5-${HDF5_VERSION}.tar.gz
+if [ "${DOWNLOAD_APP}" == "yes" ]; then
+    # Download source
+    curl -O https://support.hdfgroup.org/ftp/HDF5/current/src/hdf5-${HDF5_VERSION}.tar.gz
+fi
+
+if [ "${INSTALL_APP}" == "no" ]; then
+    # Good for debug
+    echo "Not installing hdf5 per user request (-i flag not set)"
+    exit 0
+fi
 
 # Install it
 tar xvf hdf5-${HDF5_VERSION}.tar.gz
