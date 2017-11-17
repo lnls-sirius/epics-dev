@@ -59,4 +59,13 @@ for project in pkg-config-${PKG_CONFIG_VERSION} \
     fi
 done
 
+# Clean up downloaded files
+if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
+    rm -f pkg-config-${PKG_CONFIG_VERSION}.tar.gz
+    rm -f m4-${M4_VERSION}.tar.gz
+    rm -f autoconf-${AUTOCONF_VERSION}.tar.gz
+    rm -f automake-${AUTOMAKE_VERSION}.tar.gz
+    rm -f libtool-${LIBTOOL_VERSION}.tar.gz
+fi
+
 echo "Autotools installation successfully completed"
