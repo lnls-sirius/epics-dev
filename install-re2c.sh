@@ -11,7 +11,7 @@ case "$distro" in
     "Fedora" | "RedHat" | "Scientific")
         if [ "${DOWNLOAD_APP}" == "yes" ]; then
             # Download RPM
-            curl -O http://dl.fedoraproject.org/pub/epel/7/x86_64/r/re2c-${RE2C_VERSION}.el7.x86_64.rpm
+            curl -O http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/r/re2c-${RE2C_VERSION}.el7.x86_64.rpm
         fi
 
         if [ "${INSTALL_APP}" == "no" ]; then
