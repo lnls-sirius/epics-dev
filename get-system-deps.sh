@@ -52,12 +52,6 @@ DEB_GEN_DEPS="\
     libbz2-dev \
     libxml2-dev \
     perl \
-    libpng-dev \
-    libx11-dev \
-    libxext-dev \
-    libfreetype6 \
-    libhdf5-dev \
-    imagemagick
 "
 UBU_16_10_GEN_DEPS="\
     build-essential \
