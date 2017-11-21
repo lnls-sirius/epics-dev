@@ -48,8 +48,16 @@ sudo mkdir -p ${EPICS_FOLDER}
 sudo chmod 755 ${EPICS_FOLDER}
 sudo chown ${USER}:${GROUP} ${EPICS_FOLDER}
 
-# Copy EPICS environment variables to profile
-sudo bash -c "cat ${TOP_DIR}/bash.bashrc.local >> /etc/profile.d/epics.sh"
+distro=$(./get-os-distro.sh -d)
+rev=$(./get-os-distro.sh -r)
+
+# For Debian, use ~/.bashrc, as debian docker is not reading /etc/profile
+if [ "$distro" == "Debian" ]; then
+    sudo bash -c "cat ${TOP_DIR}/bash.bashrc.local >> ~/.bashrc"
+else
+    # Copy EPICS environment variables to profile
+    sudo bash -c "cat ${TOP_DIR}/bash.bashrc.local >> /etc/profile.d/epics.sh"
+fi
 
 # Extract and install EPICS
 cd ${EPICS_FOLDER}
