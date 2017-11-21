@@ -24,7 +24,8 @@ DEB_GEN_DEPS="\
     libxext-dev \
     libfreetype6 \
     libhdf5-dev \
-    imagemagick
+    imagemagick \
+    libtiff5-dev
 "
 UBU_16_10_GEN_DEPS="\
     libpng-dev \
