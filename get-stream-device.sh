@@ -27,7 +27,9 @@ cd "$STREAM_DEVICE_PATH"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     git clone https://github.com/paulscherrerinstitute/StreamDevice.git streamDevice
-elif [ "${INSTALL_APP}" == "yes" ] && [ ! -f "./streamDevice" ]; then
+fi
+
+if [ "${INSTALL_APP}" == "yes" ] && [ ! -d "./streamDevice" ]; then
     echo "StreamDevice files are not available on ${STREAM_DEVICE_PATH}/streamDevice" >&2
     exit 1
 fi
