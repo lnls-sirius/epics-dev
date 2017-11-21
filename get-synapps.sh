@@ -82,6 +82,12 @@ echo "======= configure/CONFIG_SITE.linux-x86_64.Common ======================="
 cat configure/CONFIG_SITE.linux-x86_64.Common || /bin/true
 
 make release
+
+# Patch SynApps modules before building synApps
+cd ${TOP_DIR}
+./get-ioc-stats.sh
+cd ${EPICS_SYNAPPS}
+
 make
 if [ "${CLEANUP_APP}" == "yes" ]; then
     make clean
