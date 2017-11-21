@@ -58,7 +58,7 @@ sed -i -e '
 
 # Set SUPPORT, ASYN, CALC and SSCAN variables in configure/RELEASE
 sed -i -e "\
-    /#SNCSEQ=/ { \
+    /# *SNCSEQ *=/ { \
         p; \
         s|.*||p; \
         s|.*|SUPPORT = ${EPICS_SYNAPPS}|p; \
