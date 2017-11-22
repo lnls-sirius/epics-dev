@@ -32,6 +32,9 @@ if [ "${CLEANUP_APP}" == "yes" ]; then
     cd szip-${SZIP_VERSION}
     make clean
     cd ..
+    # Remove sources
+    rm -rf szip-${SZIP_VERSION}
+    rm -rf szip-${SZIP_VERSION}.tar.gz
 fi
 
 # Add symlinks. This won't work as this link is only done
