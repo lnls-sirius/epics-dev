@@ -30,6 +30,12 @@ fi
 
 ########################### EPICS synApps modules ##############################
 
+if [ "${INSTALL_APP}" == "no" ]; then
+    # Good for debug
+    echo "Not installing EPICS SynApps per user request (-i flag not set)"
+    exit 0
+fi
+
 cd ${EPICS_FOLDER}
 tar xvzf ${TOP_DIR}/synApps_${SYNAPPS_VERSION}.tar.gz
 
