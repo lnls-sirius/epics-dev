@@ -29,6 +29,14 @@ if [ "${DOWNLOAD_APP}" == "yes" ]; then
     git clone https://github.com/paulscherrerinstitute/StreamDevice.git streamDevice
 fi
 
+########################### EPICS Stream Device module ##############################
+
+if [ "${INSTALL_APP}" == "no" ]; then
+    # Good for debug
+    echo "Not installing EPICS StreamDevice per user request (-i flag not set)"
+    exit 0
+fi
+
 if [ "${INSTALL_APP}" == "yes" ] && [ ! -d "./streamDevice" ]; then
     echo "StreamDevice files are not available on ${STREAM_DEVICE_PATH}/streamDevice" >&2
     exit 1
