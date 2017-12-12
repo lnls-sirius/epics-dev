@@ -21,12 +21,10 @@ TOP_DIR="$(pwd)"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
 STREAM_DEVICE_PATH="${EPICS_FOLDER}/stream"
-
-mkdir -p "$STREAM_DEVICE_PATH"
-cd "$STREAM_DEVICE_PATH"
+STREAM_DEVICE_SRC_PATH="${STREAM_DEVICE_PATH}/streamDevice"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    git clone https://github.com/paulscherrerinstitute/StreamDevice.git streamDevice
+    wget -nc https://github.com/paulscherrerinstitute/StreamDevice/archive/stream_${STREAM_DEVICE_VERSION}.tar.gz
 fi
 
 ########################### EPICS Stream Device module ##############################
@@ -37,12 +35,16 @@ if [ "${INSTALL_APP}" == "no" ]; then
     exit 0
 fi
 
-if [ "${INSTALL_APP}" == "yes" ] && [ ! -d "./streamDevice" ]; then
-    echo "StreamDevice files are not available on ${STREAM_DEVICE_PATH}/streamDevice" >&2
-    exit 1
-fi
+mkdir -p "${STREAM_DEVICE_SRC_PATH}"
+cd "${STREAM_DEVICE_SRC_PATH}"
 
-/opt/epics/base/bin/linux-x86_64/makeBaseApp.pl -t support -u "$USER"
+tar xvzf ${TOP_DIR}/stream_${STREAM_DEVICE_VERSION}.tar.gz
+mv StreamDevice-stream_${STREAM_DEVICE_VERSION}/* .
+rm -rf StreamDevice-stream_${STREAM_DEVICE_VERSION}
+
+# Go back and create EPICS build files
+cd ${STREAM_DEVICE_PATH}
+/opt/epics/base/bin/linux-x86_64/makeBaseApp.pl -t support -u "$USER" stream
 
 # Add line "DIRS := $(DIRS) streamDevice/" after all lines that define DIRS
 sed -i -e '
@@ -76,7 +78,6 @@ sed -i -e "\
     }" configure/RELEASE
 
 cd streamDevice
-git checkout stream_2_7_7
 rm GNUmakefile
 cd ..
 
@@ -85,6 +86,14 @@ make install
 if [ "${CLEANUP_APP}" == "yes" ]; then
     make clean
 fi
+
+######################## Clean up downloaded files #############################
+
+if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
+    rm -f ${TOP_DIR}/stream_${STREAM_DEVICE_VERSION}.tar.gz
+fi
+
+######################## Fix SynApps and rebuild #############################
 
 # Replace SynApps Stream Device
 cd "$EPICS_SYNAPPS"
