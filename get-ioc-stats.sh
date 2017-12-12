@@ -35,6 +35,14 @@ if [ "${DOWNLOAD_APP}" == "yes" ]; then
     git clone https://github.com/epics-modules/iocStats iocStats
 fi
 
+########################### EPICS IOC Stats module ##############################
+
+if [ "${INSTALL_APP}" == "no" ]; then
+    # Good for debug
+    echo "Not installing EPICS IOCStats per user request (-i flag not set)"
+    exit 0
+fi
+
 if [ "${INSTALL_APP}" == "yes" ] && [ ! -d "iocStats" ]; then
     echo "IOC Stats files are not available on ${IOC_STATS_PATH}" >&2
     exit 1
