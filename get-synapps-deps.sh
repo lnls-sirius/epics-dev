@@ -27,6 +27,14 @@ DEB_GEN_DEPS="\
     imagemagick \
     libtiff5-dev
 "
+UBU_14_04_GEN_DEPS="\
+    libpng12-dev \
+    libx11-dev \
+    libxext-dev \
+    libfreetype6 \
+    libhdf5-dev \
+    imagemagick
+"
 UBU_16_10_GEN_DEPS="\
     libpng-dev \
     libx11-dev \
@@ -57,6 +65,7 @@ DEB_UBU_DEPS="${DEB_UBU_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 DEB_DEPS="${DEB_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_16_10_DEPS="${UBU_16_10_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_16_DEPS="${UBU_16_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
+UBU_14_04_DEPS="${UBU_14_04_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_12_DEPS="${UBU_12_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 
 FED_RED_SUS_DEPS="\
@@ -80,6 +89,8 @@ case $distro in
         # Ubuntu 16 changed some package names
         if [ "$rev" \< "12.04" ] || [ "$rev" == "12.04" ]; then
             DEPS="${GEN_DEPS} ${UBU_12_DEPS}"
+        elif [ "$rev" == "14.04" ]; then
+            DEPS="${GEN_DEPS} ${UBU_14_04_DEPS}"
         elif [ "$rev" == "16.04" ]; then
             DEPS="${GEN_DEPS} ${UBU_16_DEPS}"
         elif [ "$rev" == "16.10" ]; then
