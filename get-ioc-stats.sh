@@ -29,10 +29,8 @@ echo "Installing IOC Stats"
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
 IOC_STATS_PATH="${EPICS_FOLDER}/iocStats"
 
-cd "${EPICS_FOLDER}"
-
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    git clone https://github.com/epics-modules/iocStats iocStats
+    wget -nc https://github.com/epics-modules/iocStats/archive/${IOC_STATS_VERSION}.tar.gz
 fi
 
 ########################### EPICS IOC Stats module ##############################
@@ -43,13 +41,12 @@ if [ "${INSTALL_APP}" == "no" ]; then
     exit 0
 fi
 
-if [ "${INSTALL_APP}" == "yes" ] && [ ! -d "iocStats" ]; then
-    echo "IOC Stats files are not available on ${IOC_STATS_PATH}" >&2
-    exit 1
-fi
+mkdir -p "${IOC_STATS_PATH}"
+cd "${IOC_STATS_PATH}"
 
-cd iocStats
-git checkout 3.1.15
+tar xvzf ${TOP_DIR}/${IOC_STATS_VERSION}.tar.gz
+mv iocStats-${IOC_STATS_VERSION}/* .
+rm -rf iocStats-${IOC_STATS_VERSION}
 
 # Set EPICS variables in devIOCStats configure/RELEASE
 sed -i -e "
@@ -57,6 +54,14 @@ sed -i -e "
     s|^EPICS_BASE=.*|EPICS_BASE = ${EPICS_BASE}|g; \
 " configure/RELEASE
 cd ..
+
+######################## Clean up downloaded files #############################
+
+if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
+    rm -f ${TOP_DIR}/${IOC_STATS_VERSION}.tar.gz
+fi
+
+######################## Fix SynApps and rebuild #############################
 
 # Replace SynApps Stream Device
 cd "$EPICS_SYNAPPS"
