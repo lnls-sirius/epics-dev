@@ -185,7 +185,7 @@ fi
 ######################## Clean up downloaded files #############################
 
 if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
-    rm -f ${TOP_DIR}/baseR${EPICS_BASE_VERSION}.tar.gz
+    rm -f ${TOP_DIR}/base${EPICS_FULL_URL_VERSION}.tar.gz
     rm -f ${TOP_DIR}/extensionsTop_${EXTERNSIONS_VERSION}.tar.gz
     rm -f ${TOP_DIR}/msi${MSI_VERSION}.tar.gz
     rm -f ${TOP_DIR}/procServ-${PROCSERV_VERSION}.tar.gz
