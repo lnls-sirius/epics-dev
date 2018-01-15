@@ -28,10 +28,68 @@ EPICS_EXTENSIONS_SRC=${EPICS_EXTENSIONS}/src
 EPICS_MSI=${EPICS_EXTENSIONS_SRC}/msi${MSI_VERSION}
 EPICS_PROCSERV=${EPICS_EXTENSIONS_SRC}/procServ-${PROCSERV_VERSION}
 
+EPICS_BASE_RELEASE=$(echo "${EPICS_BASE_VERSION}" | cut -d'.' -f1)
+EPICS_BASE_MAJOR=$(echo "${EPICS_BASE_VERSION}" | cut -d'.' -f2)
+EPICS_BASE_MINOR=$(echo "${EPICS_BASE_VERSION}" | cut -d'.' -f3)
+EPICS_BASE_PATCH=$(echo "${EPICS_BASE_VERSION}" | cut -d'.' -f4)
+EPICS_FULL_URL_VERSION=
+
+concat_version_number () {
+    set +u
+    local version_number=( "$@" )
+    local result
+
+    for ver in "${version_number[@]}"; do
+        if [ -z "${ver}" ]; then
+            break
+        fi
+
+        # if not the first iteration append "." to compose
+        # something like "<release>.<major>...."
+        if [ ! -z "${result}" ]; then
+            result=${result}"."
+        fi
+
+        result=${result}${ver}
+    done
+
+    echo "${result}"
+    set -u
+}
+
+EPICS_FULL_URL_PREFIX=
+case ${EPICS_BASE_RELEASE} in
+    # EPICS 3
+    "3")
+        case ${EPICS_BASE_MAJOR} in
+            # EPICS 3.14
+            "14")
+                EPICS_FULL_URL_PREFIX="R"
+            ;;
+            # EPICS 3.15 or EPICS 3.16
+            "15" | "16")
+                EPICS_FULL_URL_PREFIX="-"
+            ;;
+        esac
+        ;;
+
+    # EPICS 7
+    "7")
+        EPICS_FULL_URL_PREFIX="-"
+        ;;
+    esac
+
+EPICS_FULL_VERSION=$(concat_version_number ${EPICS_BASE_RELEASE} \
+    ${EPICS_BASE_MAJOR} \
+    ${EPICS_BASE_MINOR} \
+    ${EPICS_BASE_PATCH}
+)
+EPICS_FULL_URL_VERSION=${EPICS_FULL_URL_PREFIX}${EPICS_FULL_VERSION}
+
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc http://www.aps.anl.gov/epics/download/base/baseR${EPICS_BASE_VERSION}.tar.gz
-    wget -nc http://www.aps.anl.gov/epics/download/extensions/extensionsTop_${EXTERNSIONS_VERSION}.tar.gz
-    wget -nc http://www.aps.anl.gov/epics/download/extensions/msi${MSI_VERSION}.tar.gz
+    wget -nc https://epics.anl.gov/download/base/base${EPICS_FULL_URL_VERSION}.tar.gz
+    wget -nc https://epics.anl.gov/download/extensions/extensionsTop_${EXTERNSIONS_VERSION}.tar.gz
+    wget -nc https://epics.anl.gov/download/extensions/msi${MSI_VERSION}.tar.gz
     wget -nc http://downloads.sourceforge.net/project/procserv/${PROCSERV_VERSION}/procServ-${PROCSERV_VERSION}.tar.gz
 fi
 
@@ -61,7 +119,7 @@ fi
 
 # Extract and install EPICS
 cd ${EPICS_FOLDER}
-tar xvzf ${TOP_DIR}/baseR${EPICS_BASE_VERSION}.tar.gz
+tar xvzf ${TOP_DIR}/base${EPICS_FULL_URL_VERSION}.tar.gz
 
 # Remove possible existing symlink
 rm -f base
