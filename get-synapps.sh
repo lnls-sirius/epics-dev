@@ -25,7 +25,7 @@ EPICS_ENV_DIR=/etc/profile.d
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc http://www.aps.anl.gov/bcda/synApps/tar/synApps_${SYNAPPS_VERSION}.tar.gz
+    wget -nc https://www1.aps.anl.gov/files/APS-Uploads/BCDA/synApps/tar/synApps_${SYNAPPS_VERSION}.tar.gz
     # Run IOC Stats script here only for download. For installation it will run
     # after SynApps "make release" command
     DOWNLOAD_APP=yes INSTALL_APP=no CLEANUP_APP=no ./get-ioc-stats.sh
