@@ -57,10 +57,10 @@ case $distro in
         GRAPHICS_MAGICK_INCLUDE=/usr/include/ImageMagick/magick
         ;;
     "Debian")
-	HDF5_BASE=/usr/lib/x86_64-linux-gnu/hdf5/serial
+        HDF5_BASE=/usr/lib/x86_64-linux-gnu/hdf5/serial
         HDF5_LIB=/usr/lib/x86_64-linux-gnu/hdf5/serial
         HDF5_INCLUDE=/usr/include/hdf5/serial
-	SZIP_BASE=/usr/lib
+        SZIP_BASE=/usr/lib
         SZIP_LIB=/usr/lib
         SZIP_INCLUDE=/usr/include
         GRAPHICS_MAGICK_BASE=/usr/lib/x86_64-linux-gnu
