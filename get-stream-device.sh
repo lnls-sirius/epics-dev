@@ -5,6 +5,8 @@ set -u
 # Exit on error
 set -e
 
+./get-stream-device-deps.sh
+
 echo "Installing Stream Device"
 
 # Source environment variables
