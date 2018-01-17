@@ -26,6 +26,9 @@ rev=$(./get-os-distro.sh -r)
 HDF5_BASE=/lib64
 HDF5_LIB=/lib64
 HDF5_INCLUDE=/usr/include
+PCRE_BASE=/usr/lib64
+PCRE_LIB=/usr/lib64
+PCRE_INCLUDE=/usr/include
 SZIP_BASE=/usr/lib64
 SZIP_LIB=/usr/lib64
 SZIP_INCLUDE=/usr/include
@@ -39,14 +42,23 @@ case $distro in
             HDF5_BASE=/usr/lib/x86_64-linux-gnu
             HDF5_LIB=/usr/lib/x86_64-linux-gnu
             HDF5_INCLUDE=/usr/include
+            PCRE_BASE=/usr/lib/x86_64-linux-gnu
+            PCRE_LIB=/usr/lib/x86_64-linux-gnu
+            PCRE_INCLUDE=/usr/include
         elif [ "$rev" == "16.04" ]; then
             HDF5_BASE=/usr/lib/x86_64-linux-gnu/hdf5/serial
             HDF5_LIB=/usr/lib/x86_64-linux-gnu/hdf5/serial
             HDF5_INCLUDE=/usr/include/hdf5/serial
+            PCRE_BASE=/usr/lib/x86_64-linux-gnu
+            PCRE_LIB=/usr/lib/x86_64-linux-gnu
+            PCRE_INCLUDE=/usr/include
         else
             HDF5_BASE=/usr/lib/x86_64-linux-gnu
             HDF5_LIB=/usr/lib/x86_64-linux-gnu
             HDF5_INCLUDE=/usr/include
+            PCRE_BASE=/usr/lib/x86_64-linux-gnu
+            PCRE_LIB=/usr/lib/x86_64-linux-gnu
+            PCRE_INCLUDE=/usr/include
         fi
 
         SZIP_BASE=/usr/lib
@@ -60,6 +72,9 @@ case $distro in
         HDF5_BASE=/usr/lib/x86_64-linux-gnu/hdf5/serial
         HDF5_LIB=/usr/lib/x86_64-linux-gnu/hdf5/serial
         HDF5_INCLUDE=/usr/include/hdf5/serial
+        PCRE_BASE=/usr/lib/x86_64-linux-gnu
+        PCRE_LIB=/usr/lib/x86_64-linux-gnu
+        PCRE_INCLUDE=/usr/include
         SZIP_BASE=/usr/lib
         SZIP_LIB=/usr/lib
         SZIP_INCLUDE=/usr/include
@@ -71,6 +86,9 @@ case $distro in
         HDF5_BASE=/lib64
         HDF5_LIB=/lib64
         HDF5_INCLUDE=/usr/include
+        PCRE_BASE=/usr/lib64
+        PCRE_LIB=/usr/lib64
+        PCRE_INCLUDE=/usr/include
         SZIP_BASE=/usr/lib64
         SZIP_LIB=/usr/lib64
         SZIP_INCLUDE=/usr/include
@@ -82,6 +100,9 @@ case $distro in
         HDF5_BASE=/lib64
         HDF5_LIB=/lib64
         HDF5_INCLUDE=/usr/include
+        PCRE_BASE=/usr/lib64
+        PCRE_LIB=/usr/lib64
+        PCRE_INCLUDE=/usr/include
         SZIP_BASE=/usr/lib64
         SZIP_LIB=/usr/lib64
         SZIP_INCLUDE=/usr/include
