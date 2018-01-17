@@ -79,6 +79,11 @@ sed -i -e "\
         s|.*|SSCAN = \$(SUPPORT)/sscan-2-10-1|p; \
     }" configure/RELEASE
 
+# add PRCE library/include. These paths might be different
+# depending on the distribution
+echo "PCRE_INCLUDE = ${PCRE_INCLUDE}" > configure/RELEASE.Common.${EPICS_HOST_ARCH}
+echo "PCRE_LIB = ${PCRE_LIB}" >> configure/RELEASE.Common.${EPICS_HOST_ARCH}
+
 cd streamDevice
 rm GNUmakefile
 cd ..
