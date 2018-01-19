@@ -12,6 +12,8 @@ The meaning of the options are:
     -a <install autotools from source = [yes|no]>
     -e <install EPICS tools = [yes|no]>
     -x <install EPICS V4 tools = [yes|no]>
+    -n <install SynApps = [yes|no]>"
+    -t <install StreamDevice = [yes|no]>"
     -s <install system dependencies = [yes|no]>
     -i <install the packages>
     -o <download the packages>
