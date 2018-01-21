@@ -191,4 +191,13 @@ if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
     rm -f ${TOP_DIR}/procServ-${PROCSERV_VERSION}.tar.gz
 fi
 
+# Source environment file so users can issue EPICS commands right after installation
+# For Debian, use ~/.bashrc, as debian docker is not reading /etc/profile
+if [ "$distro" == "Debian" ]; then
+    . ~/.bashrc
+else
+    # Copy EPICS environment variables to profile
+    . /etc/profile.d/epics.sh
+fi
+
 echo "EPICS installation successfully completed"
