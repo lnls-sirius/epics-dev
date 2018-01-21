@@ -11,6 +11,18 @@ VALID_SYNAPPS_CFG_STR="Valid values are: \"yes\" and \"no\"."
 VALID_STREAM_DEVICE_CFG_STR="Valid values are: \"yes\" and \"no\"."
 VALID_SYSTEM_DEPS_CFG_STR="Valid values are: \"yes\" and \"no\"."
 
+# Forbid sudo
+if [[ $EUID -eq 0 ]]; then
+  echo "This script must NOT be run as root" 1>&2
+  exit 1
+fi
+
+# Ask sudo password only once and keep updating sudo timestamp to
+# avoid asking again
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || \
+    exit; done 2>/dev/null &
+
 # Source environment variables
 . ./env-vars.sh
 
