@@ -134,10 +134,10 @@ if [ "${DOWNLOAD_APP}" == "yes" ]; then
     # Update repos
     sudo ${PKG_MANAGER} ${PKG_UPDT_COMMAND}
     sudo ${PKG_MANAGER} ${PKG_INSTALL_COMMAND} ${DEPS}
-
-    # Install missing dependencies not available on repos
-    ./install-szip.sh
-    ./install-hdf5.sh
 fi
+
+# Download/Install missing dependencies not available on repos
+./install-szip.sh
+./install-hdf5.sh
 
 echo "SynApps dependencies installation completed"
