@@ -77,6 +77,7 @@ The meaning of the options are:
     -x <install EPICS V4 tools = [yes|no]>
     -n <install SynApps = [yes|no]>"
     -t <install recent StreamDevice version (necessary by some IOCs)= [yes|no]>"
+    -g <install CA Gateway = [yes|no]>"
     -s <install system dependencies (necessary for EPICS tools) = [yes|no]>
     -i <install the packages>
     -o <download the packages>
