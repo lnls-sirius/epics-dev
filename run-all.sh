@@ -61,7 +61,7 @@ DOWNLOAD_APP="no"
 CLEANUP_APP="no"
 
 # Get command line options
-while getopts ":a:e:x:s:n:t:ioc" opt; do
+while getopts ":a:e:x:s:n:t:g:ioc" opt; do
     case $opt in
         a)
             AUTOTOOLS_CFG=$OPTARG
