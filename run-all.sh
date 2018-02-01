@@ -9,6 +9,7 @@ VALID_EPICS_CFG_STR="Valid values are: \"yes\" and \"no\"."
 VALID_EPICS_V4_CFG_STR="Valid values are: \"yes\" and \"no\"."
 VALID_SYNAPPS_CFG_STR="Valid values are: \"yes\" and \"no\"."
 VALID_STREAM_DEVICE_CFG_STR="Valid values are: \"yes\" and \"no\"."
+VALID_CA_GATEWAY_CFG_STR="Valid values are: \"yes\" and \"no\"."
 VALID_SYSTEM_DEPS_CFG_STR="Valid values are: \"yes\" and \"no\"."
 
 # Ask sudo password only once and keep updating sudo timestamp to
@@ -30,6 +31,7 @@ function usage {
     echo "    -x <install EPICS V4 tools = [yes|no]>"
     echo "    -n <install SynApps = [yes|no]>"
     echo "    -t <install StreamDevice ${STREAM_DEVICE_VERSION} = [yes|no]>"
+    echo "    -g <install CA Gateway ${CA_GATEWAY_VERSION} = [yes|no]>"
     echo "    -s <install system dependencies = [yes|no]>"
     echo "    -i <install the packages>"
     echo "    -o <download the packages>"
@@ -46,6 +48,8 @@ EPICS_V4_CFG="no"
 SYNAPPS_CFG="no"
 # Select if we want to install a new version of Stream Device. Options are: yes or no
 STREAM_DEVICE_CFG="no"
+# Select if we want to install a new version of CA Gateway. Options are: yes or no
+CA_GATEWAY_CFG="no"
 # Select if we want to install system dependencies or not. Options are: yes or no
 SYSTEM_DEPS_CFG="no"
 # Select if we want to install the packages or not. Options are: yes or no
@@ -73,6 +77,9 @@ while getopts ":a:e:x:s:n:t:ioc" opt; do
             ;;
         t)
             STREAM_DEVICE_CFG=$OPTARG
+            ;;
+        g)
+            CA_GATEWAY_CFG=$OPTARG
             ;;
         s)
             SYSTEM_DEPS_CFG=$OPTARG
@@ -155,6 +162,18 @@ fi
 
 if [ "$STREAM_DEVICE_CFG" != "yes" ] && [ "$STREAM_DEVICE_CFG" != "no" ]; then
     echo "Option \"-n\" has unsupported option. "$VALID_STREAM_DEVICE_CFG_STR
+    usage
+    exit 1
+fi
+
+if [ -z "$CA_GATEWAY_CFG" ]; then
+    echo "Option \"-g\" unset. "$VALID_CA_GATEWAY_CFG_STR
+    usage
+    exit 1
+fi
+
+if [ "$CA_GATEWAY_CFG" != "yes" ] && [ "$CA_GATEWAY_CFG" != "no" ]; then
+    echo "Option \"-g\" has unsupported option. "$VALID_CA_GATEWAY_CFG_STR
     usage
     exit 1
 fi
@@ -260,6 +279,19 @@ if [ "$STREAM_DEVICE_CFG" == "yes" ]; then
     # Check last command return status
     if [ $? -ne 0 ]; then
         echo "Could not compile/install new version of Stream Device." >&2
+        exit 1
+    fi
+fi
+
+######################### CA Gateway Installation ###########################
+
+# Check if we want to install new version of Stream Device
+if [ "$CA_GATEWAY_CFG" == "yes" ]; then
+    ./get-ca-gateway.sh
+
+    # Check last command return status
+    if [ $? -ne 0 ]; then
+        echo "Could not compile/install new version of CA Gateway." >&2
         exit 1
     fi
 fi
