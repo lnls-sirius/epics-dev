@@ -29,6 +29,7 @@ if [ "${DOWNLOAD_APP}" == "yes" ]; then
     # Run IOC Stats script here only for download. For installation it will run
     # after SynApps "make release" command
     DOWNLOAD_APP=yes INSTALL_APP=no CLEANUP_APP=no ./get-ioc-stats.sh
+    DOWNLOAD_APP=yes INSTALL_APP=no CLEANUP_APP=no ./get-caput-recorder.sh
 fi
 
 ########################### EPICS synApps modules ##############################
