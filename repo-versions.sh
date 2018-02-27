@@ -21,3 +21,9 @@ HDF5_VERSION=1.10.1
 
 # EPICS V4
 EPICS_V4_BASE_VERSION=4.6.0
+
+# Split EPICS version fields
+EPICS_BASE_RELEASE=$(echo "${EPICS_BASE_VERSION}" | cut -d'.' -f1)
+EPICS_BASE_MAJOR=$(echo "${EPICS_BASE_VERSION}" | cut -d'.' -f2)
+EPICS_BASE_MINOR=$(echo "${EPICS_BASE_VERSION}" | cut -d'.' -f3)
+EPICS_BASE_PATCH=$(echo "${EPICS_BASE_VERSION}" | cut -d'.' -f4)
