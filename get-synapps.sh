@@ -24,12 +24,23 @@ EPICS_ENV_DIR=/etc/profile.d
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
 
+function get_ioc_modules () {
+    local download_app=$1
+    local install_app=$2
+    local cleanup_app=$3
+    local DOWNLOAD_APP
+    local INSTALL_APP
+    local CLEANUP_APP
+
+    DOWNLOAD_APP=${download_app} INSTALL_APP=${install_app} CLEANUP_APP=${cleanup_app} ./get-ioc-stats.sh
+    DOWNLOAD_APP=${download_app} INSTALL_APP=${install_app} CLEANUP_APP=${cleanup_app} ./get-caput-recorder.sh
+}
+
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget --no-check-certificate -nc https://www.aps.anl.gov/files/APS-Uploads/BCDA/synApps/tar/synApps_${SYNAPPS_VERSION}.tar.gz
     # Run IOC Stats script here only for download. For installation it will run
     # after SynApps "make release" command
-    DOWNLOAD_APP=yes INSTALL_APP=no CLEANUP_APP=no ./get-ioc-stats.sh
-    DOWNLOAD_APP=yes INSTALL_APP=no CLEANUP_APP=no ./get-caput-recorder.sh
+    get_ioc_modules "yes" "no" "no"
 fi
 
 ########################### EPICS synApps modules ##############################
@@ -95,7 +106,7 @@ make release
 
 # Patch SynApps modules before building synApps
 cd ${TOP_DIR}
-./get-ioc-stats.sh
+get_ioc_modules ${DOWNLOAD_APP} ${INSTALL_APP} ${CLEANUP_APP}
 cd ${EPICS_SYNAPPS}
 
 make
