@@ -17,9 +17,9 @@ TOP_DIR="$(pwd)"
 # Source repo versions
 . ./repo-versions.sh
 
+# Install new version if EPICS is recent enough
 EPICS_BASE_RELMAJ=${EPICS_BASE_RELEASE}.${EPICS_BASE_MAJOR}
-# Only install new caput recorder for EPICS 3.15 forwards
-if [ "${EPICS_BASE_RELMAJ}" \< "3.15" ]; then
+if [ "${EPICS_BASE_VERSION}" \< "3.14" ]; then
     echo "Not installing CaputRecorder new version, as EPICS_BASE_VERSION is less than 3.15. Using SynApps one"
     exit 0
 fi
