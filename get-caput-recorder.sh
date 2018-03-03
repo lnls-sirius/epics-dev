@@ -41,6 +41,9 @@ if [ "${INSTALL_APP}" == "no" ]; then
     exit 0
 fi
 
+# Tell environment that you're being installed
+export CAPUT_RECORDER_NO_SYNAPPS=yes
+
 mkdir -p "${CAPUT_RECORDER_PATH}"
 cd "${CAPUT_RECORDER_PATH}"
 
