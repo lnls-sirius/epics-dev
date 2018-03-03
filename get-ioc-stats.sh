@@ -41,6 +41,9 @@ if [ "${INSTALL_APP}" == "no" ]; then
     exit 0
 fi
 
+# Tell environment that you're being installed
+export IOC_STATS_NO_SYNAPPS=yes
+
 mkdir -p "${IOC_STATS_PATH}"
 cd "${IOC_STATS_PATH}"
 
