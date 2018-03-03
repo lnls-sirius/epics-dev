@@ -17,10 +17,10 @@ TOP_DIR="$(pwd)"
 # Source repo versions
 . ./repo-versions.sh
 
-# Only install new IOC stats if we are using epics base
-# 3.14.12.6 forwards + synApps_R5_8
-if [ "${EPICS_BASE_VERSION}" \< "3.14.12.6" ]; then
-    echo "Not installing IOCStats new version, as EPICS_BASE_VERSION is less than 3.14.12.6. Using SynApps one"
+# Install new version if EPICS is recent enough
+EPICS_BASE_RELMAJ=${EPICS_BASE_RELEASE}.${EPICS_BASE_MAJOR}
+if [ "${EPICS_BASE_VERSION}" \< "3.14" ]; then
+    echo "Not installing IOCStats new version, as EPICS_BASE_VERSION is less than 3.14. Using SynApps one"
     exit 0
 fi
 
