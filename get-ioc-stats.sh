@@ -53,7 +53,7 @@ rm -rf iocStats-${IOC_STATS_VERSION}
 
 # Set EPICS variables in devIOCStats configure/RELEASE
 sed -i -e "
-    s|^SNCSEQ = .*|SNCSEQ = ${EPICS_SYNAPPS}/seq-2-2-1|g; \
+    s|^SNCSEQ = .*|SNCSEQ = ${EPICS_FOLDER}/seq|g; \
     s|^EPICS_BASE=.*|EPICS_BASE = ${EPICS_BASE}|g; \
 " configure/RELEASE
 cd ..
