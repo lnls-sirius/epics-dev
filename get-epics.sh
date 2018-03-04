@@ -86,7 +86,7 @@ if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget -nc https://epics.anl.gov/download/base/base${EPICS_FULL_URL_VERSION}.tar.gz
     wget -nc https://epics.anl.gov/download/extensions/extensionsTop_${EXTERNSIONS_VERSION}.tar.gz
     wget -nc https://epics.anl.gov/download/extensions/msi${MSI_VERSION}.tar.gz
-    wget -nc http://downloads.sourceforge.net/project/procserv/${PROCSERV_VERSION}/procServ-${PROCSERV_VERSION}.tar.gz
+    wget -nc https://github.com/ralphlange/procServ/releases/download/V${PROCSERV_VERSION}/procServ-${PROCSERV_VERSION}.tar.gz
 fi
 
 ############################## EPICS Base #####################################
