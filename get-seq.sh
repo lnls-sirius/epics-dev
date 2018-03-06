@@ -68,7 +68,23 @@ fi
 # Replace SynApps Stream Device
 cd "$EPICS_SYNAPPS"
 
-sed -i -e "s|^SNCSEQ=.*|SNCSEQ=${SEQ_PATH}|" configure/RELEASE
+sed -i -e "s|^SNCSEQ *=.*|SNCSEQ=${SEQ_PATH}|" configure/RELEASE
+
+# Replace every RELEASE file with new Sequencer
+sed -i -e "s|^SNCSEQ *=.*|SNCSEQ=${SEQ_PATH}|" \
+    ip-2-17/iocs/ipExample/configure/RELEASE \
+    ip-2-17/configure/RELEASE \
+    vme-2-8-2/configure/RELEASE \
+    measComp-1-1/configure/RELEASE \
+    motor-6-9/configure/RELEASE \
+    std-3-4/configure/RELEASE \
+    sscan-2-10-1/configure/RELEASE \
+    dxp-3-4/configure/RELEASE \
+    optics-2-9-3/configure/RELEASE \
+    quadEM-5-0/configure/RELEASE \
+    asyn-4-26/configure/RELEASE \
+    calc-3-4-2-1/configure/RELEASE \
+    mca-7-6/configure/RELEASE
 
 # As this should be executed before installing synapps,
 # don't try to "make" synapps and instead just exits
