@@ -20,7 +20,7 @@ TOP_DIR="$(pwd)"
 # Install new version if EPICS is recent enough
 EPICS_BASE_RELMAJ=${EPICS_BASE_RELEASE}.${EPICS_BASE_MAJOR}
 if [ "${EPICS_BASE_VERSION}" \< "3.14" ]; then
-    echo "Not installing Sequencer new version, as EPICS_BASE_VERSION is less than 3.16. Using SynApps one"
+    echo "Not installing Sequencer new version, as EPICS_BASE_VERSION is less than 3.14. Using SynApps one"
     exit 0
 fi
 
