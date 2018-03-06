@@ -35,6 +35,7 @@ function get_ioc_modules () {
     DOWNLOAD_APP=${download_app} INSTALL_APP=${install_app} CLEANUP_APP=${cleanup_app} ./get-caput-recorder.sh
     DOWNLOAD_APP=${download_app} INSTALL_APP=${install_app} CLEANUP_APP=${cleanup_app} ./get-seq.sh
     DOWNLOAD_APP=${download_app} INSTALL_APP=${install_app} CLEANUP_APP=${cleanup_app} ./get-ioc-stats.sh
+    DOWNLOAD_APP=${download_app} INSTALL_APP=${install_app} CLEANUP_APP=${cleanup_app} ./get-autosave.sh
 }
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
