@@ -74,7 +74,6 @@ sed -i -e "s|^AUTOSAVE *=.*|AUTOSAVE=${AUTOSAVE_PATH}|" configure/RELEASE
 sed -i -e "s|^AUTOSAVE *=.*|AUTOSAVE=${AUTOSAVE_PATH}|" \
     dxp-3-4/configure/RELEASE \
     delaygen-1-1-1/configure/RELEASE \
-    ADCore-master/configure/RELEASE \
     mca-7-6/configure/RELEASE \
     areaDetector-R2-0/configure/RELEASE \
     measComp-1-1/configure/RELEASE \
