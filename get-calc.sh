@@ -56,6 +56,7 @@ sed -i -e "
     s|^EPICS_BASE=.*|EPICS_BASE = ${EPICS_BASE}|g; \
     s|^SUPPORT *=.*|SUPPORT=${EPICS_SYNAPPS}|g; \
     s|^SNCSEQ *=.*|SNCSEQ=${EPICS_FOLDER}/seq|g; \
+    s|^SSCAN *=\(.*\)|#SSCAN=\1|g; \
 " configure/RELEASE
 cd ..
 
@@ -83,6 +84,7 @@ sed -i -e "s|^CALC *=.*|CALC=${CALC_PATH}|" \
     mca-7-6/configure/RELEASE \
     camac-2-7/configure/RELEASE \
     stream-2-6a/configure/RELEASE
+
 
 # As this should be executed before installing synapps,
 # don't try to "make" synapps and instead just exits
