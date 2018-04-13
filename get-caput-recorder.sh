@@ -30,7 +30,7 @@ EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
 CAPUT_RECORDER_PATH="${EPICS_FOLDER}/caputRecorder-${CAPUT_RECORDER_VERSION}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc -O caputRecorder-${CAPUT_RECORDER_VERSION}.tar.gz \
+    wget -nc -O ${CAPUT_RECORDER_VERSION}.tar.gz \
         https://github.com/epics-modules/caputRecorder/archive/${CAPUT_RECORDER_VERSION_RELEASE}.tar.gz
 fi
 

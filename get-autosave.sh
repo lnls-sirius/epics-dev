@@ -30,7 +30,7 @@ EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
 AUTOSAVE_PATH="${EPICS_FOLDER}/autosave-${AUTOSAVE_VERSION}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc -O autosave-${AUTOSAVE_VERSION}.tar.gz \
+    wget -nc -O ${AUTOSAVE_VERSION}.tar.gz \
         https://github.com/epics-modules/autosave/archive/${AUTOSAVE_VERSION_RELEASE}.tar.gz \
 fi
 
