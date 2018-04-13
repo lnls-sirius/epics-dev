@@ -27,7 +27,7 @@ fi
 echo "Installing IOC Stats"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
-IOC_STATS_PATH="${EPICS_FOLDER}/iocStats"
+IOC_STATS_PATH="${EPICS_FOLDER}/iocStats-${IOC_STATS_VERSION}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget -nc https://github.com/epics-modules/iocStats/archive/${IOC_STATS_VERSION}.tar.gz
