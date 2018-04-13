@@ -27,7 +27,7 @@ fi
 echo "Installing CaputRecorder"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
-CAPUT_RECORDER_PATH="${EPICS_FOLDER}/caputRecorder"
+CAPUT_RECORDER_PATH="${EPICS_FOLDER}/caputRecorder-${CAPUT_RECORDER_VERSION}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget -nc -O caputRecorder-${CAPUT_RECORDER_VERSION}.tar.gz \

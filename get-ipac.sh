@@ -27,7 +27,7 @@ fi
 echo "Installing IPAC"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
-IPAC_PATH="${EPICS_FOLDER}/ipac"
+IPAC_PATH="${EPICS_FOLDER}/ipac-${IPAC_VERSION}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget -nc https://github.com/epics-modules/ipac/releases/download/${IPAC_VERSION}/ipac-${IPAC_VERSION}.tar.gz

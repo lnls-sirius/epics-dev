@@ -22,7 +22,7 @@ TOP_DIR="$(pwd)"
 . ./repo-versions.sh
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
-STREAM_DEVICE_PATH="${EPICS_FOLDER}/stream"
+STREAM_DEVICE_PATH="${EPICS_FOLDER}/stream-${STREAM_DEVICE_VERSION}"
 STREAM_DEVICE_SRC_PATH="${STREAM_DEVICE_PATH}/streamDevice"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
