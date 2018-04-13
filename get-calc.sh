@@ -27,7 +27,7 @@ fi
 echo "Installing Calc"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
-CALC_PATH="${EPICS_FOLDER}/calc"
+CALC_PATH="${EPICS_FOLDER}/calc-${CALC_VERSION}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget -nc -O calc-${CALC_VERSION}.tar.gz \

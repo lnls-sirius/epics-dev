@@ -27,7 +27,7 @@ fi
 echo "Installing Sequencer"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
-SEQ_PATH="${EPICS_FOLDER}/seq"
+SEQ_PATH="${EPICS_FOLDER}/seq-${SEQ_VERSION}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget -nc http://www-csr.bessy.de/control/SoftDist/sequencer/releases/seq-${SEQ_VERSION}.tar.gz
