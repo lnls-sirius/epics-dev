@@ -30,7 +30,8 @@ EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
 CALC_PATH="${EPICS_FOLDER}/calc"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc https://github.com/epics-modules/calc/archive/${CALC_VERSION}.tar.gz
+    wget -nc -O calc-${CALC_VERSION}.tar.gz \
+        https://github.com/epics-modules/calc/archive/${CALC_VERSION_RELEASE}.tar.gz \
 fi
 
 ########################### EPICS Calc module ##############################
