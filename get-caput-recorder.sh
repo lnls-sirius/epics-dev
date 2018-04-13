@@ -20,7 +20,7 @@ TOP_DIR="$(pwd)"
 # Install new version if EPICS is recent enough
 EPICS_BASE_RELMAJ=${EPICS_BASE_RELEASE}.${EPICS_BASE_MAJOR}
 if [ "${EPICS_BASE_VERSION}" \< "3.14" ]; then
-    echo "Not installing CaputRecorder new version, as EPICS_BASE_VERSION is less than 3.15. Using SynApps one"
+    echo "Not installing CaputRecorder new version, as EPICS_BASE_VERSION is less than 3.14. Using SynApps one"
     exit 0
 fi
 
@@ -30,7 +30,8 @@ EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
 CAPUT_RECORDER_PATH="${EPICS_FOLDER}/caputRecorder"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc https://github.com/epics-modules/caputRecorder/archive/${CAPUT_RECORDER_VERSION}.tar.gz
+    wget -nc -O caputRecorder-${CAPUT_RECORDER_VERSION}.tar.gz \
+        https://github.com/epics-modules/caputRecorder/archive/${CAPUT_RECORDER_VERSION_RELEASE}.tar.gz
 fi
 
 ########################### EPICS IOC Stats module ##############################
