@@ -27,7 +27,7 @@ fi
 echo "Installing Autosave"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
-AUTOSAVE_PATH="${EPICS_FOLDER}/autosave"
+AUTOSAVE_PATH="${EPICS_FOLDER}/autosave-${AUTOSAVE_VERSION}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget -nc -O autosave-${AUTOSAVE_VERSION}.tar.gz \
