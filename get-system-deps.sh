@@ -13,7 +13,8 @@ GEN_DEPS="\
     automake \
     autoconf \
     make \
-    libtool
+    libtool \
+    curl
 "
 DEB_UBU_PERL_DEPS="\
     libextutils-cchecker-perl \
