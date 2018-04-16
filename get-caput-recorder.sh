@@ -50,8 +50,8 @@ mkdir -p "${CAPUT_RECORDER_PATH}"
 cd "${CAPUT_RECORDER_PATH}"
 
 tar xvzf ${TOP_DIR}/${CAPUT_RECORDER_VERSION}.tar.gz
-mv caputRecorder-${CAPUT_RECORDER_VERSION}/* .
-rm -rf caputRecorder-${CAPUT_RECORDER_VERSION}
+mv caputRecorder-*/* .
+rm -rf caputRecorder-*
 
 # Set EPICS variables in devIOCStats configure/RELEASE
 sed -i -e "
