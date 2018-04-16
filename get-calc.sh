@@ -50,8 +50,8 @@ mkdir -p "${CALC_PATH}"
 cd "${CALC_PATH}"
 
 tar xvzf ${TOP_DIR}/${CALC_VERSION}.tar.gz
-mv calc-${CALC_VERSION}/* .
-rm -rf calc-${CALC_VERSION}
+mv calc-*/* .
+rm -rf calc-*
 
 # Set EPICS variables in Calc configure/RELEASE
 sed -i -e "
