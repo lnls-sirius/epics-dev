@@ -50,8 +50,8 @@ mkdir -p "${AUTOSAVE_PATH}"
 cd "${AUTOSAVE_PATH}"
 
 tar xvzf ${TOP_DIR}/${AUTOSAVE_VERSION}.tar.gz
-mv autosave-${AUTOSAVE_VERSION}/* .
-rm -rf autosave-${AUTOSAVE_VERSION}
+mv autosave-*/* .
+rm -rf autosave-*
 
 # Set EPICS variables in Autosave configure/RELEASE
 sed -i -e "
