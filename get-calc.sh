@@ -31,7 +31,8 @@ CALC_PATH="${EPICS_FOLDER}/calc-${CALC_VERSION}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget -nc -O ${CALC_VERSION}.tar.gz \
-        https://github.com/epics-modules/calc/archive/${CALC_VERSION_RELEASE}.tar.gz
+        https://github.com/epics-modules/calc/archive/${CALC_VERSION_RELEASE}.tar.gz || \
+        true
 fi
 
 ########################### EPICS Calc module ##############################

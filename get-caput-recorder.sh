@@ -31,7 +31,8 @@ CAPUT_RECORDER_PATH="${EPICS_FOLDER}/caputRecorder-${CAPUT_RECORDER_VERSION}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget -nc -O ${CAPUT_RECORDER_VERSION}.tar.gz \
-        https://github.com/epics-modules/caputRecorder/archive/${CAPUT_RECORDER_VERSION_RELEASE}.tar.gz
+        https://github.com/epics-modules/caputRecorder/archive/${CAPUT_RECORDER_VERSION_RELEASE}.tar.gz || \
+        true
 fi
 
 ########################### EPICS IOC Stats module ##############################
