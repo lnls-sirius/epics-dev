@@ -84,7 +84,7 @@ sed -i -e "s|^SNCSEQ *=.*|SNCSEQ=${SEQ_PATH}|" \
     quadEM-5-0/configure/RELEASE \
     asyn-4-26/configure/RELEASE \
     calc-3-4-2-1/configure/RELEASE \
-    ../../calc/configure/RELEASE \
+    ../../calc-${CALC_VERSION}/configure/RELEASE \
     mca-7-6/configure/RELEASE
 
 # As this should be executed before installing synapps,
