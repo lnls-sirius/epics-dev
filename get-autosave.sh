@@ -29,10 +29,10 @@ fi
 echo "Installing Autosave"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
-AUTOSAVE_PATH="${EPICS_FOLDER}/autosave-${AUTOSAVE_VERSION}"
+AUTOSAVE_PATH="${EPICS_FOLDER}/autosave-${AUTOSAVE_VERSION_TR}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc -O ${AUTOSAVE_VERSION}.tar.gz \
+    wget -nc -O ${AUTOSAVE_VERSION_TR}.tar.gz \
         https://github.com/epics-modules/autosave/archive/${AUTOSAVE_VERSION_RELEASE}.tar.gz || \
         true
 fi
@@ -51,7 +51,7 @@ export AUTOSAVE_NO_SYNAPPS=yes
 mkdir -p "${AUTOSAVE_PATH}"
 cd "${AUTOSAVE_PATH}"
 
-tar xvzf ${TOP_DIR}/${AUTOSAVE_VERSION}.tar.gz
+tar xvzf ${TOP_DIR}/${AUTOSAVE_VERSION_TR}.tar.gz
 mv autosave-*/* .
 rm -rf autosave-*
 
@@ -64,7 +64,7 @@ cd ..
 ######################## Clean up downloaded files #############################
 
 if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
-    rm -f ${TOP_DIR}/autosave-${AUTOSAVE_VERSION}.tar.gz
+    rm -f ${TOP_DIR}/autosave-${AUTOSAVE_VERSION_TR}.tar.gz
 fi
 
 ######################## Fix SynApps and rebuild #############################
