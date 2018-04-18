@@ -33,7 +33,8 @@ SEQ_PATH="${EPICS_FOLDER}/seq-${SEQ_VERSION_TR}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget -nc -O ${SEQ_VERSION_TR}.tar.gz \
-        http://www-csr.bessy.de/control/SoftDist/sequencer/releases/seq-${SEQ_VERSION}.tar.gz
+        http://www-csr.bessy.de/control/SoftDist/sequencer/releases/seq-${SEQ_VERSION}.tar.gz || \
+        true
 fi
 
 ########################### EPICS Sequencer module ##############################
