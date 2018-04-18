@@ -86,6 +86,7 @@ echo "Installing SynApps dependencies"
 distro=$(./get-os-distro.sh -d)
 rev=$(./get-os-distro.sh -r)
 
+EXTRA_INSTALL_SCRIPTS=()
 case $distro in
     "Ubuntu")
         # Ubuntu 16 changed some package names
@@ -104,18 +105,22 @@ case $distro in
         PKG_MANAGER="apt-get"
         PKG_UPDT_COMMAND="update"
         PKG_INSTALL_COMMAND="install -y"
+        EXTRA_INSTALL_SCRIPTS+=("./install-szip.sh")
         ;;
     "Debian")
         DEPS="${GEN_DEPS} ${DEB_DEPS}"
         PKG_MANAGER="apt-get"
         PKG_UPDT_COMMAND="update"
         PKG_INSTALL_COMMAND="install -y"
+        EXTRA_INSTALL_SCRIPTS+=("./install-szip.sh")
         ;;
     "Fedora" | "RedHat" | "Scientific")
         PKG_MANAGER="yum"
         PKG_UPDT_COMMAND="makecache"
         PKG_INSTALL_COMMAND="install -y"
         DEPS="${GEN_DEPS} ${FED_RED_SUS_DEPS}"
+        EXTRA_INSTALL_SCRIPTS+=("./install-hdf5.sh")
+        EXTRA_INSTALL_SCRIPTS+=("./install-szip.sh")
         ;;
     "SUSE")
         PKG_MANAGER="zypper"
@@ -125,6 +130,7 @@ case $distro in
         PKG_INSTALL_COMMAND="--non-interactive --no-gpg-checks --quiet install \
             --auto-agree-with-licenses"
         DEPS="${GEN_DEPS} ${FED_RED_SUS_DEPS}"
+        EXTRA_INSTALL_SCRIPTS+=("./install-szip.sh")
         ;;
     *)
         echo "Unsupported distribution: $distro" >&2
@@ -139,7 +145,8 @@ if [ "${DOWNLOAD_APP}" == "yes" ]; then
 fi
 
 # Download/Install missing dependencies not available on repos
-./install-szip.sh
-./install-hdf5.sh
+for script in "${EXTRA_INSTALL_SCRIPTS[@]}"; do
+    ${script}
+done
 
 echo "SynApps dependencies installation completed"
