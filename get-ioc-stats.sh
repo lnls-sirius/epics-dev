@@ -30,9 +30,10 @@ echo "Installing IOC Stats"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
 IOC_STATS_PATH="${EPICS_FOLDER}/iocStats-${IOC_STATS_VERSION_TR}"
+IOC_STATS_TAR="ioc_stats-${IOC_STATS_VERSION_TR}.tar.gz"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc -O ${IOC_STATS_VERSION_TR}.tar.gz \
+    wget -nc -O ${IOC_STATS_TAR} \
         https://github.com/epics-modules/iocStats/archive/${IOC_STATS_VERSION}.tar.gz || \
         true
 fi
@@ -51,7 +52,7 @@ export IOC_STATS_NO_SYNAPPS=yes
 mkdir -p "${IOC_STATS_PATH}"
 cd "${IOC_STATS_PATH}"
 
-tar xvzf ${TOP_DIR}/${IOC_STATS_VERSION_TR}.tar.gz
+tar xvzf ${TOP_DIR}/${IOC_STATS_TAR}
 mv iocStats-*/* .
 rm -rf iocStats-*
 
@@ -65,7 +66,7 @@ cd ..
 ######################## Clean up downloaded files #############################
 
 if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
-    rm -f ${TOP_DIR}/${IOC_STATS_VERSION_TR}.tar.gz
+    rm -f ${TOP_DIR}/${IOC_STATS_TAR}
 fi
 
 ######################## Fix SynApps and rebuild #############################
