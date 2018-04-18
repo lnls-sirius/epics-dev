@@ -25,7 +25,8 @@ TOP_DIR="$(pwd)"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
 STREAM_DEVICE_PATH="${EPICS_FOLDER}/stream-${STREAM_DEVICE_VERSION_TR}"
-STREAM_DEVICE_SRC_PATH="${STREAM_DEVICE_PATH}/streamDevice-${STREAM_DEVICE_VERSION_TR}"
+STREAM_DEVICE_IN_NAME="streamDevice"
+STREAM_DEVICE_SRC_PATH="${STREAM_DEVICE_PATH}/${STREAM_DEVICE_IN_NAME}"
 STREAM_DEVICE_TAR="stream_device-${STREAM_DEVICE_VERSION_TR}.tar.gz"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
@@ -54,14 +55,14 @@ cd ${STREAM_DEVICE_PATH}
 /opt/epics/base/bin/linux-x86_64/makeBaseApp.pl -t support -u "$USER" stream
 
 # Add line "DIRS := $(DIRS) streamDevice/" after all lines that define DIRS
-sed -i -e '
+sed -i -e "
     /DIRS :=/ h;
     /DIRS :=/! {
         t reset_condition_flag;
         :reset_condition_flag;
 
         x;
-        s/DIRS :=.*/DIRS := $(DIRS) streamDevice/;
+        s/DIRS :=.*/DIRS := \\\$(DIRS) ${STREAM_DEVICE_IN_NAME}/;
         t replaced;
         b didnt_replace;
 
@@ -71,7 +72,7 @@ sed -i -e '
 
         :didnt_replace;
         x;
-    }' Makefile
+    }" Makefile
 
 # Set SUPPORT, ASYN, CALC and SSCAN variables in configure/RELEASE
 sed -i -e "\
@@ -89,7 +90,7 @@ sed -i -e "\
 echo "PCRE_INCLUDE = ${PCRE_INCLUDE}" > configure/RELEASE.Common.${EPICS_HOST_ARCH}
 echo "PCRE_LIB = ${PCRE_LIB}" >> configure/RELEASE.Common.${EPICS_HOST_ARCH}
 
-cd streamDevice
+cd ${STREAM_DEVICE_IN_NAME}
 rm GNUmakefile
 cd ..
 
