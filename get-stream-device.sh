@@ -29,7 +29,8 @@ STREAM_DEVICE_SRC_PATH="${STREAM_DEVICE_PATH}/streamDevice-${STREAM_DEVICE_VERSI
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget -nc -O ${STREAM_DEVICE_VERSION_TR}.tar.gz \
-        https://github.com/paulscherrerinstitute/StreamDevice/archive/stream_${STREAM_DEVICE_VERSION}.tar.gz
+        https://github.com/paulscherrerinstitute/StreamDevice/archive/stream_${STREAM_DEVICE_VERSION}.tar.gz || \
+        true
 fi
 
 ########################### EPICS Stream Device module ##############################
