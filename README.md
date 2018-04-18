@@ -36,8 +36,8 @@ For EPICS base 7.0:
     git checkout base-7.0
 ```
 
-2. Set the correct EPICS architecture by changing EPICS_HOST_ARCH variable in 
-the file "epics.sh".
+2. Set the correct EPICS architecture by changing EPICS_HOST_ARCH variable in
+the file "bash.bashrc.local".
 
 ```
     export EPICS_HOST_ARCH=linux-x86_64
