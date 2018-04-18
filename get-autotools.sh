@@ -4,6 +4,8 @@
 set -u
 # Exit on error
 set -e
+# Be verbose
+set -x
 
 echo "Installing Autotools"
 

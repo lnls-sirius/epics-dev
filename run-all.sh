@@ -4,6 +4,8 @@
 set -e
 # Check for uninitialized variables
 set -u
+# Be verbose
+set -x
 
 VALID_EPICS_CFG_STR="Valid values are: \"yes\" and \"no\"."
 VALID_EPICS_V4_CFG_STR="Valid values are: \"yes\" and \"no\"."
