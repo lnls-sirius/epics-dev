@@ -33,7 +33,8 @@ IPAC_PATH="${EPICS_FOLDER}/ipac-${IPAC_VERSION_TR}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget -nc -O ${IPAC_VERSION_TR}.tar.gz \
-        https://github.com/epics-modules/ipac/releases/download/${IPAC_VERSION}/ipac-${IPAC_VERSION}.tar.gz
+        https://github.com/epics-modules/ipac/releases/download/${IPAC_VERSION}/ipac-${IPAC_VERSION}.tar.gz || \
+        true
 fi
 
 ########################### EPICS IPAC module ##############################
