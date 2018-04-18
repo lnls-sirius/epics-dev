@@ -81,7 +81,7 @@ sed -i -e "\
         s|.*||p; \
         s|.*|SUPPORT = ${EPICS_SYNAPPS}|p; \
         s|.*|ASYN = \$(SUPPORT)/asyn-4-26|p; \
-        s|.*|CALC = ${EPICS_FOLDER}/calc|p; \
+        s|.*|CALC = ${EPICS_FOLDER}/calc-${CALC_VERSION_TR}|p; \
         s|.*|SSCAN = \$(SUPPORT)/sscan-2-10-1|p; \
     }" configure/RELEASE
 
