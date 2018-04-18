@@ -2,7 +2,7 @@
 
 Repository containing EPICS installation scripts. The idea is to simplify EPICS
 installation by just running a singls script and it will take are of: installing
-the necessary system packages for the supported architectures (Debian 8/9, 
+the necessary system packages for the supported architectures (Debian 8/9,
 Ubuntu > 14.04, Fedora > 24, CentOS > 6); installing EPICS base (3.14, 3.15, 3.16 or 7.0);
 installing EPICS modules (only synApps R5_8 for now).
 
@@ -56,7 +56,7 @@ http://www.aps.anl.gov/epics/base/R3-14/12-docs/README.html
 3. It's possible to customize all of the versions being installed
 by changing the repo-versions.sh script.
 
-Be advised, however, that some versions combination might not 
+Be advised, however, that some versions combination might not
 work. Particularly when using most recent versions of EPICS (> 3.15)
 and synApps R5_8.
 
