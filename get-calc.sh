@@ -29,10 +29,10 @@ fi
 echo "Installing Calc"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
-CALC_PATH="${EPICS_FOLDER}/calc-${CALC_VERSION}"
+CALC_PATH="${EPICS_FOLDER}/calc-${CALC_VERSION_TR}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc -O ${CALC_VERSION}.tar.gz \
+    wget -nc -O ${CALC_VERSION_TR}.tar.gz \
         https://github.com/epics-modules/calc/archive/${CALC_VERSION_RELEASE}.tar.gz || \
         true
 fi
@@ -51,7 +51,7 @@ export CALC_NO_SYNAPPS=yes
 mkdir -p "${CALC_PATH}"
 cd "${CALC_PATH}"
 
-tar xvzf ${TOP_DIR}/${CALC_VERSION}.tar.gz
+tar xvzf ${TOP_DIR}/${CALC_VERSION_TR}.tar.gz
 mv calc-*/* .
 rm -rf calc-*
 
@@ -67,7 +67,7 @@ cd ..
 ######################## Clean up downloaded files #############################
 
 if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
-    rm -f ${TOP_DIR}/calc-${CALC_VERSION}.tar.gz
+    rm -f ${TOP_DIR}/calc-${CALC_VERSION_TR}.tar.gz
 fi
 
 ######################## Fix SynApps and rebuild #############################

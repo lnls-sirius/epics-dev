@@ -24,11 +24,12 @@ TOP_DIR="$(pwd)"
 . ./repo-versions.sh
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
-STREAM_DEVICE_PATH="${EPICS_FOLDER}/stream-${STREAM_DEVICE_VERSION}"
-STREAM_DEVICE_SRC_PATH="${STREAM_DEVICE_PATH}/streamDevice"
+STREAM_DEVICE_PATH="${EPICS_FOLDER}/stream-${STREAM_DEVICE_VERSION_TR}"
+STREAM_DEVICE_SRC_PATH="${STREAM_DEVICE_PATH}/streamDevice-${STREAM_DEVICE_VERSION_TR}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc https://github.com/paulscherrerinstitute/StreamDevice/archive/stream_${STREAM_DEVICE_VERSION}.tar.gz
+    wget -nc -O ${STREAM_DEVICE_VERSION_TR}.tar.gz \
+        https://github.com/paulscherrerinstitute/StreamDevice/archive/stream_${STREAM_DEVICE_VERSION}.tar.gz
 fi
 
 ########################### EPICS Stream Device module ##############################
@@ -42,9 +43,9 @@ fi
 mkdir -p "${STREAM_DEVICE_SRC_PATH}"
 cd "${STREAM_DEVICE_SRC_PATH}"
 
-tar xvzf ${TOP_DIR}/stream_${STREAM_DEVICE_VERSION}.tar.gz
-mv StreamDevice-stream_${STREAM_DEVICE_VERSION}/* .
-rm -rf StreamDevice-stream_${STREAM_DEVICE_VERSION}
+tar xvzf ${TOP_DIR}/stream_${STREAM_DEVICE_VERSION_TR}.tar.gz
+mv StreamDevice-stream_*/* .
+rm -rf StreamDevice-stream_*
 
 # Go back and create EPICS build files
 cd ${STREAM_DEVICE_PATH}
@@ -99,7 +100,7 @@ fi
 ######################## Clean up downloaded files #############################
 
 if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
-    rm -f ${TOP_DIR}/stream_${STREAM_DEVICE_VERSION}.tar.gz
+    rm -f ${TOP_DIR}/stream_${STREAM_DEVICE_VERSION_TR}.tar.gz
 fi
 
 ######################## Fix SynApps and rebuild #############################
