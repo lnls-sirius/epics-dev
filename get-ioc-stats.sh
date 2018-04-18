@@ -33,7 +33,8 @@ IOC_STATS_PATH="${EPICS_FOLDER}/iocStats-${IOC_STATS_VERSION_TR}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
     wget -nc -O ${IOC_STATS_VERSION_TR}.tar.gz \
-        https://github.com/epics-modules/iocStats/archive/${IOC_STATS_VERSION}.tar.gz
+        https://github.com/epics-modules/iocStats/archive/${IOC_STATS_VERSION}.tar.gz || \
+        true
 fi
 
 ########################### EPICS IOC Stats module ##############################
