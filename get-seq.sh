@@ -30,9 +30,10 @@ echo "Installing Sequencer"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
 SEQ_PATH="${EPICS_FOLDER}/seq-${SEQ_VERSION_TR}"
+SEQ_TAR="seq-${SEQ_VERSION_TR}.tar.gz"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc -O ${SEQ_VERSION_TR}.tar.gz \
+    wget -nc -O ${SEQ_TAR} \
         http://www-csr.bessy.de/control/SoftDist/sequencer/releases/seq-${SEQ_VERSION}.tar.gz || \
         true
 fi
@@ -51,7 +52,7 @@ export SEQ_NO_SYNAPPS=yes
 mkdir -p "${SEQ_PATH}"
 cd "${SEQ_PATH}"
 
-tar xvzf ${TOP_DIR}/seq-${SEQ_VERSION_TR}.tar.gz
+tar xvzf ${TOP_DIR}/${SEQ_TAR}
 mv seq-*/* .
 rm -rf seq-*
 
@@ -64,7 +65,7 @@ cd ..
 ######################## Clean up downloaded files #############################
 
 if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
-    rm -f ${TOP_DIR}/seq-${SEQ_VERSION_TR}.tar.gz
+    rm -f ${TOP_DIR}/${SEQ_TAR}
 fi
 
 ######################## Fix SynApps and rebuild #############################

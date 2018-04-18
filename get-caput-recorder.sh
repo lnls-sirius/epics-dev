@@ -30,9 +30,10 @@ echo "Installing CaputRecorder"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
 CAPUT_RECORDER_PATH="${EPICS_FOLDER}/caputRecorder-${CAPUT_RECORDER_VERSION_TR}"
+CAPUT_RECORDER_TAR="caput_recorder-${CAPUT_RECORDER_VERSION_TR}.tar.gz"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc -O ${CAPUT_RECORDER_VERSION_TR}.tar.gz \
+    wget -nc -O ${CAPUT_RECORDER_TAR} \
         https://github.com/epics-modules/caputRecorder/archive/${CAPUT_RECORDER_VERSION_RELEASE}.tar.gz || \
         true
 fi
@@ -51,7 +52,7 @@ export CAPUT_RECORDER_NO_SYNAPPS=yes
 mkdir -p "${CAPUT_RECORDER_PATH}"
 cd "${CAPUT_RECORDER_PATH}"
 
-tar xvzf ${TOP_DIR}/${CAPUT_RECORDER_VERSION_TR}.tar.gz
+tar xvzf ${TOP_DIR}/${CAPUT_RECORDER_TAR}
 mv caputRecorder-*/* .
 rm -rf caputRecorder-*
 
@@ -64,7 +65,7 @@ cd ..
 ######################## Clean up downloaded files #############################
 
 if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
-    rm -f ${TOP_DIR}/${CAPUT_RECORDER_VERSION_TR}.tar.gz
+    rm -f ${TOP_DIR}/${CAPUT_RECORDER_TAR}
 fi
 
 ######################## Fix SynApps and rebuild #############################

@@ -26,9 +26,10 @@ TOP_DIR="$(pwd)"
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
 STREAM_DEVICE_PATH="${EPICS_FOLDER}/stream-${STREAM_DEVICE_VERSION_TR}"
 STREAM_DEVICE_SRC_PATH="${STREAM_DEVICE_PATH}/streamDevice-${STREAM_DEVICE_VERSION_TR}"
+STREAM_DEVICE_TAR="stream_device-${STREAM_DEVICE_VERSION_TR}.tar.gz"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc -O ${STREAM_DEVICE_VERSION_TR}.tar.gz \
+    wget -nc -O ${STREAM_DEVICE_TAR} \
         https://github.com/paulscherrerinstitute/StreamDevice/archive/stream_${STREAM_DEVICE_VERSION}.tar.gz || \
         true
 fi
@@ -44,7 +45,7 @@ fi
 mkdir -p "${STREAM_DEVICE_SRC_PATH}"
 cd "${STREAM_DEVICE_SRC_PATH}"
 
-tar xvzf ${TOP_DIR}/stream_${STREAM_DEVICE_VERSION_TR}.tar.gz
+tar xvzf ${TOP_DIR}/${STREAM_DEVICE_TAR}
 mv StreamDevice-stream_*/* .
 rm -rf StreamDevice-stream_*
 
@@ -101,7 +102,7 @@ fi
 ######################## Clean up downloaded files #############################
 
 if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
-    rm -f ${TOP_DIR}/stream_${STREAM_DEVICE_VERSION_TR}.tar.gz
+    rm -f ${TOP_DIR}/${STREAM_DEVICE_TAR}
 fi
 
 ######################## Fix SynApps and rebuild #############################
