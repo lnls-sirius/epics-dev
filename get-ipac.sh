@@ -29,10 +29,11 @@ fi
 echo "Installing IPAC"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
-IPAC_PATH="${EPICS_FOLDER}/ipac-${IPAC_VERSION}"
+IPAC_PATH="${EPICS_FOLDER}/ipac-${IPAC_VERSION_TR}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc https://github.com/epics-modules/ipac/releases/download/${IPAC_VERSION}/ipac-${IPAC_VERSION}.tar.gz
+    wget -nc -O ${IPAC_VERSION_TR}.tar.gz \
+        https://github.com/epics-modules/ipac/releases/download/${IPAC_VERSION}/ipac-${IPAC_VERSION}.tar.gz
 fi
 
 ########################### EPICS IPAC module ##############################
@@ -49,9 +50,9 @@ export IPAC_NO_SYNAPPS=yes
 mkdir -p "${IPAC_PATH}"
 cd "${IPAC_PATH}"
 
-tar xvzf ${TOP_DIR}/ipac-${IPAC_VERSION}.tar.gz
-mv ipac-${IPAC_VERSION}/* .
-rm -rf ipac-${IPAC_VERSION}
+tar xvzf ${TOP_DIR}/ipac-${IPAC_VERSION_TR}.tar.gz
+mv ipac-*/* .
+rm -rf ipac-*
 
 # Set EPICS variables in IPAC configure/RELEASE
 sed -i -e "
@@ -62,7 +63,7 @@ cd ..
 ######################## Clean up downloaded files #############################
 
 if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
-    rm -f ${TOP_DIR}/ipac-${IPAC_VERSION}.tar.gz
+    rm -f ${TOP_DIR}/ipac-${IPAC_VERSION_TR}.tar.gz
 fi
 
 ######################## Fix SynApps and rebuild #############################

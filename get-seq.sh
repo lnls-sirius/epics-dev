@@ -29,10 +29,11 @@ fi
 echo "Installing Sequencer"
 
 EPICS_SYNAPPS=${EPICS_FOLDER}/synApps_${SYNAPPS_VERSION}/support
-SEQ_PATH="${EPICS_FOLDER}/seq-${SEQ_VERSION}"
+SEQ_PATH="${EPICS_FOLDER}/seq-${SEQ_VERSION_TR}"
 
 if [ "${DOWNLOAD_APP}" == "yes" ]; then
-    wget -nc http://www-csr.bessy.de/control/SoftDist/sequencer/releases/seq-${SEQ_VERSION}.tar.gz
+    wget -nc -O ${SEQ_VERSION_TR}.tar.gz \
+        http://www-csr.bessy.de/control/SoftDist/sequencer/releases/seq-${SEQ_VERSION}.tar.gz
 fi
 
 ########################### EPICS Sequencer module ##############################
@@ -49,9 +50,9 @@ export SEQ_NO_SYNAPPS=yes
 mkdir -p "${SEQ_PATH}"
 cd "${SEQ_PATH}"
 
-tar xvzf ${TOP_DIR}/seq-${SEQ_VERSION}.tar.gz
-mv seq-${SEQ_VERSION}/* .
-rm -rf seq-${SEQ_VERSION}
+tar xvzf ${TOP_DIR}/seq-${SEQ_VERSION_TR}.tar.gz
+mv seq-*/* .
+rm -rf seq-*
 
 # Set EPICS variables in Sequencer configure/RELEASE
 sed -i -e "
@@ -62,7 +63,7 @@ cd ..
 ######################## Clean up downloaded files #############################
 
 if [ "${DOWNLOAD_APP}" == "yes" ] && [ "${CLEANUP_APP}" == "yes" ]; then
-    rm -f ${TOP_DIR}/seq-${SEQ_VERSION}.tar.gz
+    rm -f ${TOP_DIR}/seq-${SEQ_VERSION_TR}.tar.gz
 fi
 
 ######################## Fix SynApps and rebuild #############################
@@ -86,7 +87,7 @@ sed -i -e "s|^SNCSEQ *=.*|SNCSEQ=${SEQ_PATH}|" \
     quadEM-5-0/configure/RELEASE \
     asyn-4-26/configure/RELEASE \
     calc-3-4-2-1/configure/RELEASE \
-    ../../calc-${CALC_VERSION}/configure/RELEASE \
+    ../../calc-${CALC_VERSION_TR}/configure/RELEASE \
     mca-7-6/configure/RELEASE
 
 # As this should be executed before installing synapps,
