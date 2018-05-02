@@ -66,8 +66,10 @@ modules, but this is not ready yet.
 4. Run the master script and pass the desired options:
 
 ```
-    ./run-all.sh -a no -e yes -x yes -n yes -t yes -s yes -i -o -c
+    ./run-all.sh -a no -e yes -x yes [-n yes || -r yes] -t yes -s yes -i -o -c
 ```
+
+Use only -n OR -r option, not both.
 
 The meaning of the options are:
 
@@ -76,6 +78,7 @@ The meaning of the options are:
     -e <install EPICS tools = [yes|no]>
     -x <install EPICS V4 tools = [yes|no]>
     -n <install SynApps = [yes|no]>"
+    -r <install SynApps LNLS = [yes|no]>"
     -t <install recent StreamDevice version (necessary by some IOCs)= [yes|no]>"
     -s <install system dependencies (necessary for EPICS tools) = [yes|no]>
     -i <install the packages>
