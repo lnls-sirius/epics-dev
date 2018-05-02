@@ -38,6 +38,7 @@ DEB_UBU_GEN_DEPS="\
     libbz2-dev \
     libxml2-dev \
     perl \
+    libnet1-dev \
 "
 DEB_GEN_DEPS="\
     build-essential \
@@ -53,6 +54,7 @@ DEB_GEN_DEPS="\
     libbz2-dev \
     libxml2-dev \
     perl \
+    libnet1-dev \
 "
 UBU_16_10_GEN_DEPS="\
     build-essential \
@@ -121,6 +123,7 @@ FED_RED_SUS_DEPS="\
     perl-devel \
     perl-ExtUtils* \
     perl-Pod-Checker \
+    libnet-devel \
 "
 
 echo "Installing system dependencies"
