@@ -40,6 +40,7 @@ DEB_UBU_GEN_DEPS="\
     perl \
     libnet1-dev \
     libpcap-dev \
+    libusb-1.0-0-dev \
 "
 DEB_GEN_DEPS="\
     build-essential \
@@ -57,6 +58,7 @@ DEB_GEN_DEPS="\
     perl \
     libnet1-dev \
     libpcap-dev \
+    libusb-1.0-0-dev \
 "
 UBU_16_10_GEN_DEPS="\
     build-essential \
@@ -127,6 +129,7 @@ FED_RED_SUS_DEPS="\
     perl-Pod-Checker \
     libnet-devel \
     libpcap-devel \
+    libusbx-devel \
 "
 
 echo "Installing system dependencies"
