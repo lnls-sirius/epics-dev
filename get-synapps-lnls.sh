@@ -46,8 +46,8 @@ tar xvzf ${TOP_DIR}/${EPICS_SYNAPPS_LNLS_TAR}
 cd ${EPICS_SYNAPPS_LNLS}
 
 # Fix paths
-sed -i -e "s|SUPPORT=.*|SUPPORT=${EPICS_SYNAPPS_LNLS}|g" \
-    -e "s|EPICS_BASE=.*|EPICS_BASE=${EPICS_BASE}|g" configure/RELEASE
+sed -i -e "s|^SUPPORT=.*|SUPPORT=${EPICS_SYNAPPS_LNLS}|g" \
+    -e "s|^EPICS_BASE=.*|EPICS_BASE=${EPICS_BASE}|g" configure/RELEASE
 
 # Fix ADCore paths
 sed -i \
