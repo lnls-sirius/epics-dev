@@ -39,6 +39,7 @@ DEB_UBU_GEN_DEPS="\
     libxml2-dev \
     perl \
     libnet1-dev \
+    libpcap-dev \
 "
 DEB_GEN_DEPS="\
     build-essential \
@@ -55,6 +56,7 @@ DEB_GEN_DEPS="\
     libxml2-dev \
     perl \
     libnet1-dev \
+    libpcap-dev \
 "
 UBU_16_10_GEN_DEPS="\
     build-essential \
@@ -124,6 +126,7 @@ FED_RED_SUS_DEPS="\
     perl-ExtUtils* \
     perl-Pod-Checker \
     libnet-devel \
+    libpcap-devel \
 "
 
 echo "Installing system dependencies"
