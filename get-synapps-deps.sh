@@ -18,7 +18,10 @@ DEB_UBU_GEN_DEPS="\
     libXext-dev \
     libfreetype6 \
     libhdf5-dev \
-    ImageMagick
+    ImageMagick \
+    libnet1-dev \
+    libpcap-dev \
+    libusb-1.0-0-dev \
 "
 DEB_GEN_DEPS="\
     libpng-dev \
@@ -27,7 +30,10 @@ DEB_GEN_DEPS="\
     libfreetype6 \
     libhdf5-dev \
     imagemagick \
-    libtiff5-dev
+    libtiff5-dev \
+    libnet1-dev \
+    libpcap-dev \
+    libusb-1.0-0-dev \
 "
 UBU_14_04_GEN_DEPS="\
     libpng12-dev \
@@ -78,7 +84,10 @@ FED_RED_SUS_DEPS="\
     hdf5 \
     hdf5-devel \
     ImageMagick \
-    ImageMagick-devel
+    ImageMagick-devel \
+    libnet-devel \
+    libpcap-devel \
+    libusbx-devel \
 "
 
 echo "Installing SynApps dependencies"
