@@ -41,7 +41,10 @@ UBU_14_04_GEN_DEPS="\
     libxext-dev \
     libfreetype6 \
     libhdf5-dev \
-    imagemagick
+    imagemagick\
+    libnet1-dev \
+    libpcap-dev \
+    libusb-1.0-0-dev \
 "
 UBU_16_10_GEN_DEPS="\
     libpng-dev \
@@ -50,7 +53,10 @@ UBU_16_10_GEN_DEPS="\
     libfreetype6 \
     libhdf5-dev \
     imagemagick \
-    libtiff5-dev
+    libtiff5-dev \
+    libnet1-dev \
+    libpcap-dev \
+    libusb-1.0-0-dev \
 "
 UBU_16_GEN_DEPS="\
     libpng12-dev \
@@ -59,7 +65,10 @@ UBU_16_GEN_DEPS="\
     libfreetype6 \
     libhdf5-dev \
     imagemagick \
-    libtiff5-dev
+    libtiff5-dev \
+    libnet1-dev \
+    libpcap-dev \
+    libusb-1.0-0-dev \
 "
 UBU_12_GEN_DEPS="\
     libpng12-dev \
@@ -67,7 +76,10 @@ UBU_12_GEN_DEPS="\
     libxext-dev \
     libfreetype6 \
     libhdf5-serial-dev \
-    ImageMagick
+    ImageMagick \
+    libnet1-dev \
+    libpcap-dev \
+    libusb-1.0-0-dev \
 "
 DEB_UBU_DEPS="${DEB_UBU_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 DEB_DEPS="${DEB_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
