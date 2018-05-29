@@ -7,6 +7,8 @@ set -e
 # Be verbose
 set -x
 
+SCRIPTPATH="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
+
 echo "Installing EPICS"
 
 # Source environment variables
@@ -133,6 +135,15 @@ echo "/usr/lib" | sudo tee -a /etc/ld.so.conf.d/epics.conf
 
 # Update ldconfig cache
 sudo ldconfig
+
+EPICS_PATCHES_FOLDER="base-${EPICS_BASE_VERSION}"
+EPICS_PATCHES_FULL="${SCRIPTPATH}/patches/${EPICS_PATCHES_FOLDER}"
+# Apply any patches
+if [ -d "${EPICS_PATCHES_FULL}" ]; then
+    for epatch in $(find ${EPICS_PATCHES_FULL} -type f); do
+        patch -d ${EPICS_BASE} --ignore-whitespace -p0 < ${epatch}
+    done
+fi
 
 # Compile EPICS base
 cd ${EPICS_BASE}
