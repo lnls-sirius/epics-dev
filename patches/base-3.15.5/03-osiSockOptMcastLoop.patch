@@ -1,0 +1,134 @@
+diff --git src/ca/client/udpiiu.cpp src/ca/client/udpiiu.cpp
+index beae075..ccb2556 100644
+--- src/ca/client/udpiiu.cpp
++++ src/ca/client/udpiiu.cpp
+@@ -165,7 +165,7 @@ udpiiu::udpiiu (
+ 
+ #ifdef IP_ADD_MEMBERSHIP
+     {
+-        int flag = 1;
++        osiSockOptMcastLoop_t flag = 1;
+         if ( setsockopt ( this->sock, IPPROTO_IP, IP_MULTICAST_LOOP,
+                           (char *) &flag, sizeof ( flag ) ) == -1 ) {
+             char sockErrBuf[64];
+diff --git src/ioc/rsrv/caservertask.c src/ioc/rsrv/caservertask.c
+index 50bc650..fda4421 100644
+--- src/ioc/rsrv/caservertask.c
++++ src/ioc/rsrv/caservertask.c
+@@ -308,7 +308,7 @@ void rsrv_build_addr_lists(void)
+         }
+ #ifdef IP_ADD_MEMBERSHIP
+         {
+-            int flag = 1;
++            osiSockOptMcastLoop_t flag = 1;
+             if (setsockopt(beaconSocket, IPPROTO_IP, IP_MULTICAST_LOOP,
+                            (char *)&flag, sizeof(flag))<0) {
+                 char sockErrBuf[64];
+diff --git src/libCom/osi/os/Darwin/osdSock.h src/libCom/osi/os/Darwin/osdSock.h
+index 1d4556e..e7c3440 100644
+--- src/libCom/osi/os/Darwin/osdSock.h
++++ src/libCom/osi/os/Darwin/osdSock.h
+@@ -31,6 +31,7 @@ typedef int                     SOCKET;
+ #define socket_ioctl(A,B,C)     ioctl(A,B,C)
+ typedef int osiSockIoctl_t;
+ typedef socklen_t osiSocklen_t;
++typedef int osiSockOptMcastLoop_t;
+ 
+ #define FD_IN_FDSET(FD) ((FD)<FD_SETSIZE)
+ 
+diff --git src/libCom/osi/os/Linux/osdSock.h src/libCom/osi/os/Linux/osdSock.h
+index 614f3f9..7164a54 100644
+--- src/libCom/osi/os/Linux/osdSock.h
++++ src/libCom/osi/os/Linux/osdSock.h
+@@ -35,6 +35,7 @@ typedef int                     SOCKET;
+ #define socket_ioctl(A,B,C)     ioctl(A,B,C)
+ typedef int osiSockIoctl_t;
+ typedef socklen_t osiSocklen_t;
++typedef int osiSockOptMcastLoop_t;
+ 
+ #define FD_IN_FDSET(FD) ((FD)<FD_SETSIZE)
+ 
+diff --git src/libCom/osi/os/RTEMS/osdSock.h src/libCom/osi/os/RTEMS/osdSock.h
+index 930ed0e..6177c30 100644
+--- src/libCom/osi/os/RTEMS/osdSock.h
++++ src/libCom/osi/os/RTEMS/osdSock.h
+@@ -42,6 +42,7 @@ typedef int                     SOCKET;
+ #define socket_ioctl(A,B,C)     ioctl(A,B,C)
+ typedef int osiSockIoctl_t;
+ typedef socklen_t osiSocklen_t;
++typedef char osiSockOptMcastLoop_t;
+ 
+ #define FD_IN_FDSET(FD) ((FD)<FD_SETSIZE)
+ 
+diff --git src/libCom/osi/os/WIN32/osdSock.h src/libCom/osi/os/WIN32/osdSock.h
+index d92e187..2ff23c4 100644
+--- src/libCom/osi/os/WIN32/osdSock.h
++++ src/libCom/osi/os/WIN32/osdSock.h
+@@ -28,6 +28,7 @@
+ #define socket_ioctl(A,B,C)	ioctlsocket(A,B,C)
+ typedef u_long FAR osiSockIoctl_t;
+ typedef int osiSocklen_t;
++typedef BOOL osiSockOptMcastLoop_t;
+ 
+ #ifndef SHUT_RD
+ #   define SHUT_RD SD_RECEIVE
+diff --git src/libCom/osi/os/cygwin32/osdSock.h src/libCom/osi/os/cygwin32/osdSock.h
+index d642cad..75288c8 100644
+--- src/libCom/osi/os/cygwin32/osdSock.h
++++ src/libCom/osi/os/cygwin32/osdSock.h
+@@ -34,6 +34,7 @@ typedef int                     SOCKET;
+ #define socket_ioctl(A,B,C)     ioctl(A,B,C)
+ typedef int osiSockIoctl_t;
+ typedef int osiSocklen_t;
++typedef int osiSockOptMcastLoop_t;
+ #define FD_IN_FDSET(FD) ((FD)<FD_SETSIZE&&(FD)>=0)
+ #ifndef SHUT_RD
+ #define SHUT_RD 0
+diff --git src/libCom/osi/os/freebsd/osdSock.h src/libCom/osi/os/freebsd/osdSock.h
+index fe28d4c..b402ec1 100644
+--- src/libCom/osi/os/freebsd/osdSock.h
++++ src/libCom/osi/os/freebsd/osdSock.h
+@@ -36,6 +36,7 @@ typedef int                     SOCKET;
+ #define socket_ioctl(A,B,C)     ioctl(A,B,C)
+ typedef int osiSockIoctl_t;
+ typedef socklen_t osiSocklen_t;
++typedef int osiSockOptMcastLoop_t;
+ 
+ #define FD_IN_FDSET(FD) ((FD)<FD_SETSIZE)
+ 
+diff --git src/libCom/osi/os/iOS/osdSock.h src/libCom/osi/os/iOS/osdSock.h
+index 0b3b3f6..08849a8 100644
+--- src/libCom/osi/os/iOS/osdSock.h
++++ src/libCom/osi/os/iOS/osdSock.h
+@@ -32,6 +32,7 @@ typedef int                     SOCKET;
+ #define socket_ioctl(A,B,C)     ioctl(A,B,C)
+ typedef int osiSockIoctl_t;
+ typedef socklen_t osiSocklen_t;
++typedef int osiSockOptMcastLoop_t;
+ 
+ #define FD_IN_FDSET(FD) ((FD)<FD_SETSIZE)
+ 
+diff --git src/libCom/osi/os/solaris/osdSock.h src/libCom/osi/os/solaris/osdSock.h
+index a39c6c3..872a08d 100644
+--- src/libCom/osi/os/solaris/osdSock.h
++++ src/libCom/osi/os/solaris/osdSock.h
+@@ -42,6 +42,7 @@ typedef int osiSockIoctl_t;
+ #else
+     typedef int osiSocklen_t;
+ #endif
++typedef int osiSockOptMcastLoop_t;
+ 
+ #define DOES_NOT_ACCEPT_ZERO_LENGTH_UDP
+ 
+diff --git src/libCom/osi/os/vxWorks/osdSock.h src/libCom/osi/os/vxWorks/osdSock.h
+index 80464ef..d949b25 100644
+--- src/libCom/osi/os/vxWorks/osdSock.h
++++ src/libCom/osi/os/vxWorks/osdSock.h
+@@ -65,6 +65,7 @@ typedef int                     SOCKET;
+ #define socket_ioctl(A,B,C)     ioctl(A,B,(int)C)
+ typedef int osiSockIoctl_t;
+ typedef int osiSocklen_t;
++typedef int osiSockOptMcastLoop_t;
+ 
+ #define FD_IN_FDSET(FD) ((FD)<FD_SETSIZE&&(FD)>=0)
+ 
