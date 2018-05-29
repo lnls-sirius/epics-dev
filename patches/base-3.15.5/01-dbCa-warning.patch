@@ -1,0 +1,12 @@
+diff --git src/ioc/db/dbCa.c src/ioc/db/dbCa.c
+index 3f67269..f4caeb1 100644
+--- src/ioc/db/dbCa.c
++++ src/ioc/db/dbCa.c
+@@ -144,7 +144,6 @@ static void addAction(caLink *pca, short link_action)
+         if (++removesOutstanding >= removesOutstandingWarning) {
+             errlogPrintf("dbCa::addAction pausing, %d channels to clear\n",
+                 removesOutstanding);
+-            printLinks(pca);
+         }
+         while (removesOutstanding >= removesOutstandingWarning) {
+             epicsMutexUnlock(workListLock);
