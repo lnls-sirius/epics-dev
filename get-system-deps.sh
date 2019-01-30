@@ -54,6 +54,20 @@ DEB_GEN_DEPS="\
     libxml2-dev \
     perl \
 "
+UBU_18_04_GEN_DEPS="
+    build-essential \
+    g++ \
+    glib2.0 \
+    libglib2.0 \
+    libglib2.0-dev \
+    uuid-dev \
+    libreadline-dev \
+    libusb-dev \
+    bzip2 \
+    libbz2-dev \
+    libxml2-dev \
+    perl \
+"
 UBU_16_10_GEN_DEPS="\
     build-essential \
     g++ \
@@ -101,6 +115,7 @@ UBU_12_GEN_DEPS="\
 "
 DEB_UBU_DEPS="${DEB_UBU_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 DEB_DEPS="${DEB_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
+UBU_18_04_DEPS="${UBU_18_04_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_16_10_DEPS="${UBU_16_10_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_16_DEPS="${UBU_16_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
 UBU_12_DEPS="${UBU_12_GEN_DEPS} ${DEB_UBU_PERL_DEPS}"
@@ -133,6 +148,8 @@ case $distro in
         # Ubuntu 16 changed some package names
         if [ "$rev" \< "12.04" ] || [ "$rev" == "12.04" ]; then
             DEPS="${GEN_DEPS} ${UBU_12_DEPS}"
+	elif [ "$rev" == "18.04" ]; then
+	    DEPS="${GEN_DEPS} ${UBU_18_04_DEPS}"
         elif [ "$rev" == "16.04" ]; then
             DEPS="${GEN_DEPS} ${UBU_16_DEPS}"
         elif [ "$rev" == "16.10" ]; then
