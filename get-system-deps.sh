@@ -54,7 +54,6 @@ DEB_GEN_DEPS="\
     libxml2-dev \
     perl \
 "
-
 UBU_18_04_GEN_DEPS="
     build-essential \
     g++ \
