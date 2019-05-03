@@ -66,7 +66,7 @@ modules, but this is not ready yet.
 4. Run the master script and pass the desired options:
 
 ```
-    ./run-all.sh -a no -e yes -x yes [-n yes || -r yes] -t yes -s yes -i -o -c
+    ./run-all.sh -a no -e yes -x no [-n yes || -r yes] -t no -s yes -i -o -c
 ```
 
 Use only -n OR -r option, not both.
