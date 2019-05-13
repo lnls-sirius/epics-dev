@@ -62,6 +62,13 @@ sed -i \
     -e "s|GRAPHICS_MAGICK_INCLUDE\( *\)=.*|GRAPHICS_MAGICK_INCLUDE\1= -I${GRAPHICS_MAGICK_INCLUDE}|g" \
     areaDetector-*/configure/CONFIG_SITE.local.linux-x86_64
 
+# Fix StreamDevice paths
+
+# add PRCE library/include. These paths might be different
+# depending on the distribution
+echo "PCRE_INCLUDE = ${PCRE_INCLUDE}" > configure/RELEASE.Common.${EPICS_HOST_ARCH}
+echo "PCRE_LIB = ${PCRE_LIB}" >> configure/RELEASE.Common.${EPICS_HOST_ARCH}
+
 # Debug/Info stuff
 echo "======= configure/RELEASE.local ========================================="
 cat configure/RELEASE.local || /bin/true
